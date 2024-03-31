@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@headlessui/react':
     specifier: ^1.7.18
@@ -20,6 +16,9 @@ dependencies:
   next:
     specifier: 14.1.4
     version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
+  pnpm:
+    specifier: '8.2'
+    version: 8.2.0
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -2681,6 +2680,12 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /pnpm@8.2.0:
+    resolution: {integrity: sha512-f2/abl6GycxLgVZQtWA2zBJKMXcv2L86HGRwJ4qnS02gVzLgtFegC25qWKFtUunCY74GUwxq2A7yGAJEyOuCYg==}
+    engines: {node: '>=16.14'}
+    hasBin: true
+    dev: false
+
   /possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
@@ -3622,3 +3627,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
