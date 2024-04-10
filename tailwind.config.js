@@ -3,10 +3,12 @@ const plugin = require('tailwindcss/plugin');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'selector',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)']
+        sans: ['Graphik', 'sans-serif'],
+        serif: ['Merriweather', 'serif']
       },
       keyframes: {
         fadeIn: {
@@ -27,6 +29,18 @@ module.exports = {
         fadeIn: 'fadeIn .3s ease-in-out',
         carousel: 'marquee 60s linear infinite',
         blink: 'blink 1.4s both infinite'
+      },
+      colors: {
+        blue: '#ffffff',
+        purple: '#7e5bef',
+        pink: '#ff49db',
+        orange: '#ff7849',
+        green: '#13ce66',
+        yellow: '#ffc82c',
+        'gray-dark': '#273444',
+        gray: '#8492a6',
+        'gray-light': '#d3dce6',
+        primary: 'beige'
       }
     }
   },
