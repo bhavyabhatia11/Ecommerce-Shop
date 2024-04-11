@@ -10,6 +10,7 @@ export default function Search() {
 
   const toggleSearch = () => {
     const search = document.getElementById('search-input');
+    if (!search) return;
     search.classList.toggle('hidden');
   };
 
@@ -32,7 +33,7 @@ export default function Search() {
   }
 
   return (
-    <>
+    <div className="bg-gray-light bg-opacity-50">
       <form
         onSubmit={onSubmit}
         id="search-input"
@@ -48,11 +49,11 @@ export default function Search() {
           className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500"
         />
         <div className="absolute right-0 top-0 mr-3 flex h-full items-center p-4">
-          <MagnifyingGlassIcon className="h-4" />
+          <MagnifyingGlassIcon className="h-4 bg-transparent" />
         </div>
       </form>
-      <MagnifyingGlassIcon className="h-4" onClick={toggleSearch} />
-    </>
+      <MagnifyingGlassIcon className="h-4 bg-transparent" onClick={toggleSearch} />
+    </div>
   );
 }
 

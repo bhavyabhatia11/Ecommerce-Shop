@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Graphik', 'sans-serif'],
-        serif: ['Merriweather', 'serif']
+        sans: ['Libre Caslon Display', 'sans-serif'],
+        serif: ['Libre Caslon Display', 'serif']
       },
       keyframes: {
         fadeIn: {
@@ -31,16 +31,14 @@ module.exports = {
         blink: 'blink 1.4s both infinite'
       },
       colors: {
-        blue: '#ffffff',
-        purple: '#7e5bef',
-        pink: '#ff49db',
-        orange: '#ff7849',
-        green: '#13ce66',
-        yellow: '#ffc82c',
-        'gray-dark': '#273444',
-        gray: '#8492a6',
-        'gray-light': '#d3dce6',
-        primary: 'beige'
+        'gray-light': '#E4E4E4',
+        primary: '#F8F2EB',
+        secondary: '#334F55',
+        'bottle-green': '#313514',
+        'navy-blue': '#0A1C2A',
+        'brown-light': '#D6D1CA',
+        'beige-light': '#E6E0D2',
+        'beige-dark': '##E4DCD4'
       }
     }
   },
