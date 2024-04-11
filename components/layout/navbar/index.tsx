@@ -1,3 +1,4 @@
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import LogoSquare from 'components/logo-square';
@@ -14,7 +15,9 @@ export default async function Navbar() {
     <>
       <nav className="fixed left-0 right-0 top-0 z-10 flex items-center justify-between bg-primary bg-opacity-50 p-4 font-serif lg:px-6">
         <div className="flex items-center">
-          <HamburgerMenu menu={menu} />
+          <Suspense fallback={<Bars3Icon className="h-4" />}>
+            <HamburgerMenu menu={menu} />
+          </Suspense>
         </div>
 
         <div className="absolute left-1/2 flex w-full -translate-x-1/2 transform items-center justify-center md:w-auto lg:mr-6">
