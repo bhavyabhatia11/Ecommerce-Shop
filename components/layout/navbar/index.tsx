@@ -5,7 +5,7 @@ import { getMenu } from 'lib/shopify';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import HamburgerMenu from './menu';
-import Search from './search';
+import Search, { SearchSkeleton } from './search';
 
 export default async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');
@@ -24,7 +24,9 @@ export default async function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Search />
+          <Suspense fallback={<SearchSkeleton />}>
+            <Search />
+          </Suspense>
           <Suspense fallback={<OpenCart />}>
             <Cart />
           </Suspense>
