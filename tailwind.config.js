@@ -1,66 +1,62 @@
-const plugin = require('tailwindcss/plugin');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'selector',
+  darkMode: ['class'],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+    './@/**/*.{ts,tsx}'
+  ],
+  prefix: '',
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px'
+      }
+    },
     extend: {
-      fontFamily: {
-        sans: ['Libre Caslon Display', 'sans-serif'],
-        serif: ['Libre Caslon Display', 'serif']
-      },
-      keyframes: {
-        fadeIn: {
-          from: { opacity: 0 },
-          to: { opacity: 1 }
-        },
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' }
-        },
-        blink: {
-          '0%': { opacity: 0.2 },
-          '20%': { opacity: 1 },
-          '100% ': { opacity: 0.2 }
-        }
-      },
-      animation: {
-        fadeIn: 'fadeIn .3s ease-in-out',
-        carousel: 'marquee 60s linear infinite',
-        blink: 'blink 1.4s both infinite'
-      },
       colors: {
-        'gray-light': '#E4E4E4',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         primary: '#F8F2EB',
         secondary: '#334F55',
         'bottle-green': '#313514',
         'navy-blue': '#0A1C2A',
         'brown-light': '#D6D1CA',
         'beige-light': '#E6E0D2',
-        'beige-dark': '##E4DCD4'
+        'beige-dark': '##E4DCD4',
+        'gray-light': '#E4E4E4'
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' }
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' }
+        }
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out'
+      },
+      fontFamily: {
+        sans: ['Libre Caslon Display', 'sans-serif'],
+        serif: ['Libre Caslon Display', 'serif']
       }
     }
   },
-  future: {
-    hoverOnlyWhenSupported: true
-  },
-  plugins: [
-    require('@tailwindcss/container-queries'),
-    require('@tailwindcss/typography'),
-    plugin(({ matchUtilities, theme }) => {
-      matchUtilities(
-        {
-          'animation-delay': (value) => {
-            return {
-              'animation-delay': value
-            };
-          }
-        },
-        {
-          values: theme('transitionDelay')
-        }
-      );
-    })
-  ]
+  plugins: [require('tailwindcss-animate')]
 };

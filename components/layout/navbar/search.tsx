@@ -33,10 +33,9 @@ export default function Search() {
   }
 
   return (
-    <div className="bg-gray-light bg-opacity-50">
+    <div id="search-input" className="bg-gray-light bg-opacity-50">
       <form
         onSubmit={onSubmit}
-        id="search-input"
         className="absolute left-0 top-20 hidden w-full p-4 lg:w-80 xl:w-full"
       >
         <input

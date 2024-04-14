@@ -23,6 +23,9 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery
 } from './queries/product';
+
+import { getMetaObjectsQuery } from './queries/metaobjects';
+
 import {
   Cart,
   Collection,
@@ -40,6 +43,7 @@ import {
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
   ShopifyMenuOperation,
+  ShopifyMetaObjectOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
   ShopifyProduct,
@@ -139,7 +143,7 @@ const reshapeCollection = (collection: ShopifyCollection): Collection | undefine
 
   return {
     ...collection,
-    path: `/search/${collection.handle}`
+    path: `/collections/${collection.handle}`
   };
 };
 
@@ -324,7 +328,7 @@ export async function getCollections(): Promise<Collection[]> {
         title: 'All',
         description: 'All products'
       },
-      path: '/search',
+      path: '/collections',
       updatedAt: new Date().toISOString()
     },
     // Filter out the `hidden` collections.
@@ -349,7 +353,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
-      path: item.url.replace(domain, '').replace('/collections', '/search').replace('/pages', '')
+      path: item.url.replace(domain, '').replace('/pages', '')
     })) || []
   );
 }
@@ -417,6 +421,17 @@ export async function getProducts({
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
 }
 
+export async function getMetaObjects(handle: string): Promise<any> {
+  const res = await shopifyFetch<ShopifyMetaObjectOperation>({
+    query: getMetaObjectsQuery,
+    tags: [TAGS.meta],
+    variables: {
+      handle
+    }
+  });
+
+  return res.body;
+}
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.
 export async function revalidate(req: NextRequest): Promise<NextResponse> {
   // We always need to respond with a 200 status code to Shopify,

@@ -19,18 +19,21 @@ export default async function SearchPage({
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
 
   const products = await getProducts({ sortKey, reverse, query: searchValue });
-  const resultsText = products.length > 1 ? 'results' : 'result';
+  const resultsText = products.length > 1 ? 'Results' : 'Result';
+  const itemsText = products.length > 1 ? 'Items' : 'Item';
 
   return (
     <>
-      {searchValue ? (
-        <p className="mb-4">
+      <div className="mb-4 flex w-full flex-row items-center justify-between">
+        <div className="font-serif text-5xl">
           {products.length === 0
             ? 'There are no products that match '
-            : `Showing ${products.length} ${resultsText} for `}
-          <span className="font-bold">&quot;{searchValue}&quot;</span>
-        </p>
-      ) : null}
+            : searchValue ?? 'All collections'}{' '}
+        </div>
+        <div className="font-serif text-2xl">
+          {products.length} {searchValue ? resultsText : itemsText}
+        </div>
+      </div>
       {products.length > 0 ? (
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <ProductGridItems products={products} />
