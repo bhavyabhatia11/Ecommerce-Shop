@@ -43,6 +43,7 @@ import {
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
   ShopifyMenuOperation,
+  ShopifyMetaObject,
   ShopifyMetaObjectOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
@@ -122,11 +123,42 @@ const removeEdgesAndNodes = (array: Connection<any>) => {
   return array.edges.map((edge) => edge?.node);
 };
 
+const reshapeMetaObject = (metaobject: ShopifyMetaObject) => {
+  if (!metaobject) {
+    return undefined;
+  }
+
+  const fields = metaobject.fields.reduce((acc, field) => {
+    acc[field.key] = field.value;
+    return acc;
+  }, {});
+
+  return {
+    ...metaobject,
+    fields
+  };
+};
+
+const reshapeMetaObjects = (metaobjects: ShopifyMetaObject[]) => {
+  const reshapedMetaObjects = [];
+
+  for (const metaobject of metaobjects) {
+    if (metaobject) {
+      const reshapedMetaObject = reshapeMetaObject(metaobject);
+
+      if (reshapedMetaObject) {
+        reshapedMetaObjects.push(reshapedMetaObject);
+      }
+    }
+  }
+
+  return reshapedMetaObjects;
+};
 const reshapeCart = (cart: ShopifyCart): Cart => {
   if (!cart.cost?.totalTaxAmount) {
     cart.cost.totalTaxAmount = {
       amount: '0.0',
-      currencyCode: 'USD'
+      currencyCode: 'INR'
     };
   }
 
@@ -429,9 +461,10 @@ export async function getMetaObjects(handle: string): Promise<any> {
       handle
     }
   });
-
-  return res.body;
+  console.log('RAW', res.body.data.metaobjects, 'META OBJECTS');
+  return reshapeMetaObjects(removeEdgesAndNodes(res.body.data.metaobjects));
 }
+
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.
 export async function revalidate(req: NextRequest): Promise<NextResponse> {
   // We always need to respond with a 200 status code to Shopify,
