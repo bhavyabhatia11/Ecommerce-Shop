@@ -128,7 +128,7 @@ const reshapeMetaObject = (metaobject: ShopifyMetaObject) => {
     return undefined;
   }
 
-  const fields = metaobject.fields.reduce((acc, field) => {
+  const fields = metaobject.fields.reduce((acc: any, field) => {
     acc[field.key] = field.value;
     return acc;
   }, {});
