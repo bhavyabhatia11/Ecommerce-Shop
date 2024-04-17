@@ -85,7 +85,7 @@ export default async function ProductPage({ params }: { params: { handle: string
           <div className="h-full w-full basis-full lg:basis-4/6">
             <Suspense
               fallback={
-                <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden" />
+                <div className="relative aspect-[3/4] h-full max-h-[550px] w-full overflow-hidden" />
               }
             >
               <Gallery
@@ -121,7 +121,7 @@ async function RelatedProducts({ id }: { id: string }) {
         {relatedProducts.map((product) => (
           <li
             key={product.handle}
-            className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
+            className="aspect-[3/4] w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
             <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
               <GridTileImage
@@ -132,7 +132,6 @@ async function RelatedProducts({ id }: { id: string }) {
                   currencyCode: product.priceRange.maxVariantPrice.currencyCode
                 }}
                 src={product.featuredImage?.url}
-                fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
               />
             </Link>

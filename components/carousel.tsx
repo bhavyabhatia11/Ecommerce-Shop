@@ -13,7 +13,7 @@ export async function Carousel() {
 
   return (
     <div className=" w-full overflow-x-auto pb-6 pt-1">
-      <ul className="flex animate-carousel gap-4">
+      <ul className="animate-carousel flex gap-4">
         {carouselProducts.map((product, i) => (
           <li
             key={`${product.handle}${i}`}
@@ -28,7 +28,6 @@ export async function Carousel() {
                   currencyCode: product.priceRange.maxVariantPrice.currencyCode
                 }}
                 src={product.featuredImage?.url}
-                fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               />
             </Link>

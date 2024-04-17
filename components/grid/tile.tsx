@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -17,18 +18,14 @@ export function GridTileImage({
   };
 } & React.ComponentProps<typeof Image>) {
   return (
-    <div
-      className={clsx(
-        'group flex h-[500px] w-[360px] items-center justify-center overflow-hidden bg-primary hover:bg-secondary'
-      )}
-    >
+    <div className={clsx('group flex h-full w-full items-center justify-center overflow-hidden')}>
       {props.src ? (
-        // eslint-disable-next-line jsx-a11y/alt-text -- `alt` is inherited from `props`, which is being enforced with TypeScript
         <Image
-          className={clsx('relative h-full w-full object-contain', {
+          className={clsx('relative h-full w-full object-cover', {
             'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
           })}
-          objectFit="cover"
+          width={1}
+          height={1}
           {...props}
         />
       ) : null}
