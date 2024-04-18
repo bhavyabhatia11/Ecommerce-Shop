@@ -1,7 +1,13 @@
 import clsx from 'clsx';
 import LogoIcon from './icons/logo';
 
-export default function LogoSquare({ size }: { size?: 'sm' | undefined }) {
+export default function LogoSquare({
+  size,
+  color = 'black'
+}: {
+  size?: 'sm' | undefined;
+  color?: 'black' | 'white';
+}) {
   return (
     <div
       className={clsx('flex flex-none items-center justify-center', {
@@ -14,6 +20,7 @@ export default function LogoSquare({ size }: { size?: 'sm' | undefined }) {
           'h-[49px] w-[156px]': !size,
           'h-[35px] w-[98pxx]': size === 'sm'
         })}
+        color={color}
       />
     </div>
   );

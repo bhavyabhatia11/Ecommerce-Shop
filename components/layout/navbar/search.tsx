@@ -1,6 +1,9 @@
 'use client';
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { PopoverClose } from '@radix-ui/react-popover';
 import { createUrl } from 'lib/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -8,17 +11,8 @@ export default function Search() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const toggleSearch = () => {
-    const search = document.getElementById('search-input');
-    if (!search) return;
-    search.classList.toggle('hidden');
-  };
-
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    toggleSearch();
-
     const val = e.target as HTMLFormElement;
     const search = val.search as HTMLInputElement;
     const newParams = new URLSearchParams(searchParams.toString());
@@ -29,30 +23,39 @@ export default function Search() {
       newParams.delete('q');
     }
 
-    router.push(createUrl('/search', newParams));
+    router.push(createUrl('/collections', newParams));
   }
 
   return (
-    <div id="search-input" className="bg-gray-light bg-opacity-50">
-      <form
-        onSubmit={onSubmit}
-        className="absolute left-0 top-20 hidden w-full p-4 lg:w-80 xl:w-full"
-      >
-        <input
-          key={searchParams?.get('q')}
-          type="text"
-          name="search"
-          placeholder="Search for products..."
-          autoComplete="off"
-          defaultValue={searchParams?.get('q') || ''}
-          className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500"
-        />
-        <div className="absolute right-0 top-0 mr-3 flex h-full items-center p-4">
-          <MagnifyingGlassIcon className="h-4 bg-transparent" />
+    <Popover>
+      <PopoverTrigger>
+        <MagnifyingGlassIcon className="h-4 " />
+      </PopoverTrigger>
+      <PopoverContent className="mt-7 w-[100vw] bg-primary bg-opacity-75 backdrop-blur-sm">
+        <div>
+          <form onSubmit={onSubmit} className="flex w-full items-center lg:w-80 xl:w-full">
+            <div className="flex h-full items-center p-4">
+              <MagnifyingGlassIcon className="h-4 " />
+            </div>
+            <input
+              key={searchParams?.get('q')}
+              type="text"
+              name="search"
+              placeholder="Search for products..."
+              defaultValue={searchParams?.get('q') || ''}
+              className="text-md w-full bg-transparent font-sans text-black outline-none placeholder:text-neutral-500"
+            />
+            <div>
+              <PopoverClose asChild>
+                <div className="flex h-full items-center p-4">
+                  <XMarkIcon className="h-4 cursor-pointer" />
+                </div>
+              </PopoverClose>
+            </div>
+          </form>
         </div>
-      </form>
-      <MagnifyingGlassIcon className="h-4 bg-transparent" onClick={toggleSearch} />
-    </div>
+      </PopoverContent>
+    </Popover>
   );
 }
 

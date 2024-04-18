@@ -1,13 +1,12 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
-import Search, { SearchSkeleton } from './search';
 
 export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
@@ -28,8 +27,6 @@ export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
     setIsOpen(false);
   }, [pathname, searchParams]);
 
-  console.log('menu', menu);
-
   return (
     <>
       <Sheet>
@@ -38,9 +35,6 @@ export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
         </SheetTrigger>
         <SheetContent side="left" className="bg-primary">
           <div className="mb-4 w-full">
-            <Suspense fallback={<SearchSkeleton />}>
-              <Search />
-            </Suspense>
             {menu.length ? (
               <ul className="flex w-full flex-col">
                 {menu.map((item: Menu) => (
