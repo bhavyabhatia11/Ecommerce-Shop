@@ -134,10 +134,7 @@ const reshapeMetaObject = (metaobject: ShopifyMetaObject) => {
     return acc;
   }, {});
 
-  return {
-    ...metaobject,
-    fields
-  };
+  return fields;
 };
 
 interface ReshapedMenuItem {
@@ -470,7 +467,7 @@ export async function getMetaObjects(handle: string): Promise<any> {
       handle
     }
   });
-  console.log('RAW', res.body.data.metaobjects, 'META OBJECTS');
+  // console.log('RAW', res.body.data.metaobjects, 'META OBJECTS');
   return reshapeMetaObjects(removeEdgesAndNodes(res.body.data.metaobjects));
 }
 
