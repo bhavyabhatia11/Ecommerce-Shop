@@ -1,31 +1,79 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
+import { Accordion, AccordionContent, AccordionTrigger } from '@/components/ui/accordion';
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import { AccordionItem } from '@radix-ui/react-accordion';
+import clsx from 'clsx';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
+
+const levelToPadding = ['pl-2', 'pl-8', 'pl-12'];
+const AccordianMenu = ({
+  menu,
+  className,
+  level
+}: {
+  menu: Menu[];
+  className: string;
+  level: number;
+}) => {
+  const paddingLeft = levelToPadding[level];
+  return (
+    <Accordion type="single" collapsible className={clsx('w-full', className)} defaultValue="Shop">
+      {menu.length ? (
+        <ul className="flex flex-col">
+          {menu.map((item: Menu, index) => (
+            <>
+              {console.log('KEY, ', item.title, item.path)}
+              {item.items && item.items.length > 0 ? (
+                <AccordionItem
+                  className="p-0 transition-colors "
+                  value={item.title}
+                  key={`${item.path}-${index}`}
+                >
+                  <AccordionTrigger
+                    className={`py-2 pr-4 ${paddingLeft} text-lg hover:bg-beige-dark hover:text-neutral-500 hover:no-underline`}
+                  >
+                    <SheetClose asChild>
+                      <Link href={item.path}>{item.title}</Link>
+                    </SheetClose>
+                  </AccordionTrigger>
+                  <AccordionContent className="p-0">
+                    <AccordianMenu
+                      className=""
+                      menu={item.items}
+                      level={level + 1}
+                      key={`${item.path}-${index}`}
+                    />
+                  </AccordionContent>
+                </AccordionItem>
+              ) : (
+                <SheetClose
+                  asChild
+                  key={`${item.path}-${index}`}
+                  className={`py-2 pr-4 ${paddingLeft} text-lg text-black transition-colors hover:bg-beige-dark hover:text-neutral-500`}
+                >
+                  <Link href={item.path}>{item.title}</Link>
+                </SheetClose>
+              )}
+              {index != menu.length - 1 && <hr className="" />}
+            </>
+          ))}
+        </ul>
+      ) : null}
+    </Accordion>
+  );
+};
 
 export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setIsOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isOpen]);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname, searchParams]);
+  useEffect(() => {}, [pathname, searchParams]);
 
   return (
     <>
@@ -33,23 +81,8 @@ export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
         <SheetTrigger>
           <Bars3Icon className="h-4" />
         </SheetTrigger>
-        <SheetContent side="left" className="bg-primary">
-          <div className="mb-4 w-full">
-            {menu.length ? (
-              <ul className="flex w-full flex-col">
-                {menu.map((item: Menu) => (
-                  <li
-                    className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
-                    key={item.title}
-                  >
-                    <SheetClose asChild key={item.path}>
-                      <Link href={item.path}>{item.title}</Link>
-                    </SheetClose>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
+        <SheetContent side="left" className="bg-primary p-0 font-serif text-lg tracking-wide">
+          <AccordianMenu menu={menu} className="" level={0} />
         </SheetContent>
       </Sheet>
     </>

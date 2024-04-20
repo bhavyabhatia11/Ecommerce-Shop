@@ -31,6 +31,10 @@ export type CartItem = {
 
 export type Collection = ShopifyCollection & {
   path: string;
+  title: string;
+  description: string;
+  image: Image;
+  type: string;
 };
 
 export type Image = {
@@ -43,6 +47,7 @@ export type Image = {
 export type Menu = {
   title: string;
   path: string;
+  items: Menu[];
 };
 
 export type Money = {
@@ -103,6 +108,8 @@ export type ShopifyCart = {
 export type ShopifyCollection = {
   handle: string;
   title: string;
+  image: Image;
+  metafield: { value: string };
   description: string;
   seo: SEO;
   updatedAt: string;
@@ -136,6 +143,12 @@ export type ShopifyMetaObject = {
     key: string;
     value: string;
   }[];
+};
+
+export type ShopifyMenuItem = {
+  title: string;
+  url: string;
+  items: ShopifyMenuItem[];
 };
 
 export type ShopifyCartOperation = {
@@ -225,10 +238,7 @@ export type ShopifyCollectionsOperation = {
 export type ShopifyMenuOperation = {
   data: {
     menu?: {
-      items: {
-        title: string;
-        url: string;
-      }[];
+      items: ShopifyMenuItem[];
     };
   };
   variables: {

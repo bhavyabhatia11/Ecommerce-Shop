@@ -42,6 +42,7 @@ import {
   ShopifyCollectionProductsOperation,
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
+  ShopifyMenuItem,
   ShopifyMenuOperation,
   ShopifyMetaObject,
   ShopifyMetaObjectOperation,
@@ -139,6 +140,28 @@ const reshapeMetaObject = (metaobject: ShopifyMetaObject) => {
   };
 };
 
+interface ReshapedMenuItem {
+  title: string;
+  path: string;
+  items: ReshapedMenuItem[];
+}
+
+const reshapeMenu = (items: ShopifyMenuItem[] | undefined): ReshapedMenuItem[] => {
+  const reshapedMenuItems: ReshapedMenuItem[] = [];
+  if (items) {
+    for (const item of items) {
+      if (item) {
+        reshapedMenuItems.push({
+          title: item.title,
+          path: item.url.replace(domain, '').replace('/pages', ''),
+          items: reshapeMenu(item.items)
+        });
+      }
+    }
+  }
+  return reshapedMenuItems;
+};
+
 const reshapeMetaObjects = (metaobjects: ShopifyMetaObject[]) => {
   const reshapedMetaObjects = [];
 
@@ -175,7 +198,8 @@ const reshapeCollection = (collection: ShopifyCollection): Collection | undefine
 
   return {
     ...collection,
-    path: `/collections/${collection.handle}`
+    path: `/collections/${collection.handle}`,
+    type: collection?.metafield?.value || ''
   };
 };
 
@@ -345,30 +369,20 @@ export async function getCollectionProducts({
   return reshapeProducts(removeEdgesAndNodes(res.body.data.collection.products));
 }
 
-export async function getCollections(): Promise<Collection[]> {
+export async function getCollections(type = ''): Promise<Collection[]> {
   const res = await shopifyFetch<ShopifyCollectionsOperation>({
     query: getCollectionsQuery,
     tags: [TAGS.collections]
   });
   const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections);
   const collections = [
-    {
-      handle: '',
-      title: 'All',
-      description: 'All products',
-      seo: {
-        title: 'All',
-        description: 'All products'
-      },
-      path: '/collections',
-      updatedAt: new Date().toISOString()
-    },
-    // Filter out the `hidden` collections.
-    // Collections that start with `hidden-*` need to be hidden on the search page.
-    ...reshapeCollections(shopifyCollections).filter(
-      (collection) => !collection.handle.startsWith('hidden')
-    )
-  ];
+    ...reshapeCollections(shopifyCollections).filter((collection) => {
+      if (!type || type == 'all') {
+        return true;
+      }
+      return collection.type.startsWith(type);
+    })
+  ] as Collection[];
 
   return collections;
 }
@@ -382,12 +396,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
     }
   });
 
-  return (
-    res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
-      title: item.title,
-      path: item.url.replace(domain, '').replace('/pages', '')
-    })) || []
-  );
+  return reshapeMenu(res.body?.data?.menu?.items) || [];
 }
 
 export async function getPage(handle: string): Promise<Page> {

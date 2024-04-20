@@ -34,7 +34,7 @@ export default async function Footer() {
         </Suspense>
         <div className="md:ml-auto"></div>
       </div>
-      <div className="flex w-full flex-row items-center justify-center gap-4 px-16">
+      <div className="flex w-full flex-row items-center justify-center gap-4 px-0 lg:px-16">
         <div className="w-[50%]">
           <hr className="border-t" />
         </div>

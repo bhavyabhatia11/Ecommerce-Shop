@@ -20,6 +20,11 @@ module.exports = {
         source: '/password',
         destination: '/',
         permanent: true
+      },
+      {
+        source: '/shop',
+        destination: '/shop/all',
+        permanent: true
       }
     ];
   }

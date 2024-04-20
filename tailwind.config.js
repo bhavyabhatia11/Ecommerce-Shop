@@ -30,7 +30,7 @@ module.exports = {
         'navy-blue': '#0A1C2A',
         'brown-light': '#D6D1CA',
         'beige-light': '#E6E0D2',
-        'beige-dark': '##E4DCD4',
+        'beige-dark': '#E4DCD4',
         'gray-light': '#E4E4E4'
       },
       borderRadius: {
@@ -54,7 +54,10 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Libre Caslon Display', 'sans-serif'],
-        serif: ['Libre Caslon Display', 'serif']
+        serif: ['Courier Prime', 'serif']
+      },
+      fontWeight: {
+        medium: 400
       }
     }
   },
