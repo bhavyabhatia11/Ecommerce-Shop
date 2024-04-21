@@ -10,8 +10,6 @@ export default function Testimonials({ testimonials }: { testimonials: any[] }) 
     Autoplay({ delay: 4000, stopOnMouseEnter: true, stopOnInteraction: false })
   );
 
-  console.log('TEST', testimonials);
-
   return (
     <Carousel
       plugins={[plugin.current]}

@@ -1,7 +1,7 @@
 import imageFragment from './image';
 import seoFragment from './seo';
 
-const productFragment = /* GraphQL */ `
+export const productFragment = /* GraphQL */ `
   fragment product on Product {
     id
     handle
@@ -61,4 +61,21 @@ const productFragment = /* GraphQL */ `
   ${seoFragment}
 `;
 
-export default productFragment;
+export const filterFragment = /* GraphQL */ `
+  fragment filter on Product {
+    handle
+    priceRange {
+      maxVariantPrice {
+        amount
+        currencyCode
+      }
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    stones: metafield(namespace: "custom", key: "stones") {
+      value
+    }
+  }
+`;

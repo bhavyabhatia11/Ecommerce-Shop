@@ -19,6 +19,7 @@ import {
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
+  getProductFiltersQuery,
   getProductQuery,
   getProductRecommendationsQuery,
   getProductsQuery
@@ -258,6 +259,29 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
   return reshapedProducts;
 };
 
+const reshapeFilters = (products: ShopifyProduct[]) => {
+  const priceRange = { min: Number.MAX_SAFE_INTEGER, max: 0 };
+  const stonesSet = new Set();
+
+  for (const product of products) {
+    if (product) {
+      const minAmount = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(2);
+      const maxAmount = parseFloat(product.priceRange.maxVariantPrice.amount).toFixed(2);
+
+      priceRange.min = Math.min(parseFloat(minAmount), priceRange.min);
+      priceRange.max = Math.max(parseFloat(maxAmount), priceRange.max);
+
+      const stonesArray = JSON.parse(product?.stones?.value || '[]') as string[];
+      stonesArray.forEach((stone) => {
+        stonesSet.add(stone);
+      });
+    }
+  }
+
+  const stones = Array.from(stonesSet);
+  return { priceRange, stones };
+};
+
 export async function createCart(): Promise<Cart> {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
@@ -440,11 +464,15 @@ export async function getProductRecommendations(productId: string): Promise<Prod
 export async function getProducts({
   query,
   reverse,
-  sortKey
+  sortKey,
+  minPrice,
+  maxPrice
 }: {
   query?: string;
   reverse?: boolean;
   sortKey?: string;
+  minPrice?: string;
+  maxPrice?: string;
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
@@ -452,11 +480,24 @@ export async function getProducts({
     variables: {
       query,
       reverse,
-      sortKey
+      sortKey,
+      minPrice,
+      maxPrice
     }
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+export async function getFilters(): Promise<{
+  priceRange: { min: number; max: number };
+  stones: unknown[];
+}> {
+  const res = await shopifyFetch<ShopifyProductsOperation>({
+    query: getProductFiltersQuery,
+    tags: [TAGS.products]
+  });
+  return reshapeFilters(removeEdgesAndNodes(res.body.data.products));
 }
 
 export async function getMetaObjects(handle: string): Promise<any> {

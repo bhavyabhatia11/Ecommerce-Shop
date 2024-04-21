@@ -1,4 +1,4 @@
-import productFragment from '../fragments/product';
+import { filterFragment, productFragment } from '../fragments/product';
 
 export const getProductQuery = /* GraphQL */ `
   query getProduct($handle: String!) {
@@ -8,9 +8,19 @@ export const getProductQuery = /* GraphQL */ `
   }
   ${productFragment}
 `;
-
+// filters: [ {price: { min: 0.0 , max: 500.0 }}, {	productMetafield:{
+//   namespace:"custom",
+//   key:"stones",
+//   value:"Ruby"
+// }} ],
 export const getProductsQuery = /* GraphQL */ `
-  query getProducts($sortKey: ProductSortKeys, $reverse: Boolean, $query: String) {
+  query getProducts(
+    $sortKey: ProductSortKeys
+    $reverse: Boolean
+    $query: String
+    $minPrice: String
+    $maxPrice: String
+  ) {
     products(sortKey: $sortKey, reverse: $reverse, query: $query, first: 100) {
       edges {
         node {
@@ -20,6 +30,19 @@ export const getProductsQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
+`;
+
+export const getProductFiltersQuery = /* GraphQL */ `
+  query getProducts {
+    products(first: 100) {
+      edges {
+        node {
+          ...filter
+        }
+      }
+    }
+  }
+  ${filterFragment}
 `;
 
 export const getProductRecommendationsQuery = /* GraphQL */ `

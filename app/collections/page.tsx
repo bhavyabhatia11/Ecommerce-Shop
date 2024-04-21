@@ -1,7 +1,8 @@
 import Grid from 'components/grid';
 import ProductGridItems from 'components/layout/product-grid-items';
 import { defaultSort, sorting } from 'lib/constants';
-import { getProducts } from 'lib/shopify';
+import { getFilters, getProducts } from 'lib/shopify';
+import Filters from './filters';
 
 export const runtime = 'edge';
 
@@ -15,10 +16,16 @@ export default async function SearchPage({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const { sort, q: searchValue } = searchParams as { [key: string]: string };
+  const {
+    sort,
+    q: searchValue,
+    min: minPrice,
+    max: maxPrice
+  } = searchParams as { [key: string]: string };
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
 
-  const products = await getProducts({ sortKey, reverse, query: searchValue });
+  const products = await getProducts({ sortKey, reverse, query: searchValue, minPrice, maxPrice });
+  const filters = await getFilters();
   const resultsText = products.length > 1 ? 'Results' : 'Result';
   const itemsText = products.length > 1 ? 'Items' : 'Item';
 
@@ -34,6 +41,7 @@ export default async function SearchPage({
           {products.length} {searchValue ? resultsText : itemsText}
         </div>
       </div>
+      <Filters filters={filters} />
       {products.length > 0 ? (
         <Grid className="xs:grid-cols-2 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <ProductGridItems products={products} />

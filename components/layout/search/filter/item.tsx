@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import type { SortFilterItem } from 'lib/constants';
+import type { PriceRangeItem, SortFilterItem } from 'lib/constants';
 import { createUrl } from 'lib/utils';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -48,12 +48,12 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
   const DynamicTag = active ? 'p' : Link;
 
   return (
-    <li className="mt-2 flex text-sm text-black dark:text-white" key={item.title}>
+    <li className="flex text-sm text-black dark:text-white" key={item.title}>
       <DynamicTag
         prefetch={!active ? false : undefined}
         href={href}
-        className={clsx('w-full hover:underline hover:underline-offset-4', {
-          'underline underline-offset-4': active
+        className={clsx('w-full p-4 tracking-[0.42px] hover:bg-beige-dark hover:no-underline', {
+          'bg-beige-dark': active
         })}
       >
         {item.title}
@@ -62,6 +62,37 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
   );
 }
 
+function PriceRangeFilterItem({ item }: { item: PriceRangeItem }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q');
+  const sort = searchParams.get('sort');
+  const href = createUrl(
+    pathname,
+    new URLSearchParams({
+      ...(q && { q }),
+      ...(sort && { sort }),
+      ...(item.min !== undefined && { min: item.min.toString() }),
+      ...(item.max !== undefined && { max: item.max.toString() })
+    })
+  );
+  return (
+    <li className="flex text-sm text-black" key={item.slug}>
+      <Link
+        prefetch={false}
+        href={href}
+        className={clsx('w-full p-4 tracking-[0.42px] hover:bg-beige-dark hover:no-underline')}
+      >
+        {item.max ? `${item.min} - ${item.max}` : `Above ${item.min}`}
+      </Link>
+    </li>
+  );
+}
+
 export function FilterItem({ item }: { item: ListItem }) {
-  return 'path' in item ? <PathFilterItem item={item} /> : <SortFilterItem item={item} />;
+  return 'min' in item ? (
+    <PriceRangeFilterItem item={item} />
+  ) : (
+    <SortFilterItem item={item as SortFilterItem} />
+  );
 }

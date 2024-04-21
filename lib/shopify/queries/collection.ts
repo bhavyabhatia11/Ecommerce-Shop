@@ -1,5 +1,5 @@
 import imageFragment from '../fragments/image';
-import productFragment from '../fragments/product';
+import { productFragment } from '../fragments/product';
 import seoFragment from '../fragments/seo';
 
 const collectionFragment = /* GraphQL */ `

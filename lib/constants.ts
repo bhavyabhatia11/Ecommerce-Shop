@@ -5,6 +5,12 @@ export type SortFilterItem = {
   reverse: boolean;
 };
 
+export type PriceRangeItem = {
+  min?: number;
+  max?: number;
+  slug: string;
+};
+
 export const defaultSort: SortFilterItem = {
   title: 'Relevance',
   slug: null,
@@ -18,6 +24,13 @@ export const sorting: SortFilterItem[] = [
   { title: 'Latest arrivals', slug: 'latest-desc', sortKey: 'CREATED_AT', reverse: true },
   { title: 'Price: Low to high', slug: 'price-asc', sortKey: 'PRICE', reverse: false }, // asc
   { title: 'Price: High to low', slug: 'price-desc', sortKey: 'PRICE', reverse: true }
+];
+
+export const priceRange: PriceRangeItem[] = [
+  { min: 0, max: 500, slug: 'min=0&max=500' },
+  { min: 500, max: 1000, slug: 'min=500&max=1000' },
+  { min: 1000, max: 5000, slug: 'min=1000&max=5000' },
+  { min: 5000, max: undefined, slug: 'min=5000' }
 ];
 
 export const TAGS = {

@@ -127,6 +127,7 @@ export type ShopifyProduct = {
     maxVariantPrice: Money;
     minVariantPrice: Money;
   };
+  stones: { value: string };
   variants: Connection<ProductVariant>;
   featuredImage: Image;
   images: Connection<Image>;
@@ -281,6 +282,8 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    minPrice?: string;
+    maxPrice?: string;
   };
 };
 
