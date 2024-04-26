@@ -6,7 +6,8 @@ import { STONE_COLORS, type PriceRangeItem, type SortFilterItem } from 'lib/cons
 import { createUrl } from 'lib/utils';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import type { ListItem } from '.';
+
+export type ListItem = SortFilterItem | string | PriceRangeItem;
 
 function createSearchParams(params: any) {
   const searchParams = new URLSearchParams();
