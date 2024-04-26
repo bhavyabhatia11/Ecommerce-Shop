@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { baseUrl } from 'lib/constants';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -17,7 +18,7 @@ const FooterMenuItem = ({ item }: { item: Menu }) => {
   return (
     <li>
       <Link
-        href={`/${item.path}`}
+        href={`${baseUrl}/${item.path}`}
         className={clsx('block p-2 text-lg hover:text-neutral-200 md:inline-block md:text-sm', {
           'text-neutral-200': active
         })}

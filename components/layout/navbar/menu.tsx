@@ -8,6 +8,7 @@ import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/s
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { AccordionItem } from '@radix-ui/react-accordion';
 import clsx from 'clsx';
+import { baseUrl } from 'lib/constants';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 
@@ -38,7 +39,7 @@ const AccordianMenu = ({
                     className={`py-2 pr-4 ${paddingLeft} text-lg hover:bg-beige-dark hover:text-neutral-500 hover:no-underline`}
                   >
                     <SheetClose asChild>
-                      <Link href={`/${item.path}`}>{item.title}</Link>
+                      <Link href={`${baseUrl}/${item.path}`}>{item.title}</Link>
                     </SheetClose>
                   </AccordionTrigger>
                   <AccordionContent className="p-0">
@@ -56,7 +57,7 @@ const AccordianMenu = ({
                   key={`${item.path}-${index}`}
                   className={`py-2 pr-4 ${paddingLeft} text-lg text-black transition-colors hover:bg-beige-dark hover:text-neutral-500`}
                 >
-                  <Link href={`/${item.path}`}>{item.title}</Link>
+                  <Link href={`${baseUrl}/${item.path}`}>{item.title}</Link>
                 </SheetClose>
               )}
               {index != menu.length - 1 && <hr className="" />}
