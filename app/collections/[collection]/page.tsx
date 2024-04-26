@@ -8,8 +8,6 @@ import { humanizeString } from 'components/utils';
 import { defaultSort, sorting } from 'lib/constants';
 import Filters from '../filters';
 
-export const runtime = 'edge';
-
 export async function generateMetadata({
   params
 }: {
