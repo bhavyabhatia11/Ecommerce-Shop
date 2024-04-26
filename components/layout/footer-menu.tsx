@@ -17,7 +17,7 @@ const FooterMenuItem = ({ item }: { item: Menu }) => {
   return (
     <li>
       <Link
-        href={item.path}
+        href={`/${item.path}`}
         className={clsx('block p-2 text-lg hover:text-neutral-200 md:inline-block md:text-sm', {
           'text-neutral-200': active
         })}
