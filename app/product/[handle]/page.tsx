@@ -10,7 +10,7 @@ import { getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 import Link from 'next/link';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export async function generateMetadata({
   params

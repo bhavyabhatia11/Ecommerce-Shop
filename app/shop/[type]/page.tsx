@@ -3,7 +3,7 @@ import CollectionGridItems from 'components/layout/collection-grid-items';
 import { humanizeString } from 'components/utils';
 import { getCollections } from 'lib/shopify';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export const metadata = {
   title: 'Search',
