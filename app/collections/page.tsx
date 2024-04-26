@@ -4,7 +4,7 @@ import { defaultSort, sorting } from 'lib/constants';
 import { getFilters, getProducts } from 'lib/shopify';
 import Filters from './filters';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 export const metadata = {
   title: 'Search',
