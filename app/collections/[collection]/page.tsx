@@ -1,4 +1,4 @@
-import { getCollection, getCollectionProducts } from 'lib/shopify';
+import { getCollection, getCollectionProducts, getFilters } from 'lib/shopify';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -6,6 +6,7 @@ import Grid from 'components/grid';
 import ProductGridItems from 'components/layout/product-grid-items';
 import { humanizeString } from 'components/utils';
 import { defaultSort, sorting } from 'lib/constants';
+import Filters from '../filters';
 
 export const runtime = 'edge';
 
@@ -32,27 +33,38 @@ export default async function CategoryPage({
   params: { collection: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const { sort } = searchParams as { [key: string]: string };
+  const {
+    sort,
+    min: minPrice,
+    max: maxPrice,
+    stones: stonesString
+  } = searchParams as { [key: string]: string };
+  const stones = stonesString ? stonesString.split(',').filter(Boolean) : [];
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
-  const products = await getCollectionProducts({ collection: params.collection, sortKey, reverse });
+  const products = await getCollectionProducts({
+    collection: params.collection,
+    sortKey,
+    reverse,
+    minPrice,
+    maxPrice,
+    stones
+  });
+  const filters = await getFilters();
   const itemsText = products.length > 1 ? 'Items' : 'Item';
 
   return (
     <section>
       <div className="mb-4 flex w-full flex-row items-center justify-between">
-        <div className="font-serif text-5xl">
-          {products.length === 0
-            ? 'No products found in this collection '
-            : humanizeString(params.collection)}{' '}
-        </div>
+        <div className="font-serif text-5xl">{humanizeString(params.collection)}</div>
         <div className="font-serif text-2xl">
           {products.length} {itemsText}
         </div>
       </div>
+      <Filters filters={filters} />
       {products.length === 0 ? (
-        <p className="py-3 text-lg">{`No products found in this collection`}</p>
+        <p className="py-3 font-serif text-3xl">{`No products found in this collection`}</p>
       ) : (
-        <Grid className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <Grid className="xs:grid-cols-2 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <ProductGridItems products={products} />
         </Grid>
       )}

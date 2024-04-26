@@ -24,6 +24,9 @@ export const productFragment = /* GraphQL */ `
         currencyCode
       }
     }
+    stones: metafield(namespace: "custom", key: "stones") {
+      value
+    }
     variants(first: 250) {
       edges {
         node {

@@ -6,7 +6,6 @@ import FilterList from './filter';
 
 async function CollectionList() {
   const collections = await getCollections();
-  console.log('COLLE', collections);
   return <FilterList list={collections} title="Collections" />;
 }
 

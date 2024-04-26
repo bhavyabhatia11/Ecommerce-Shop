@@ -14,8 +14,6 @@ export default async function CollectionListPage({ params }: { params?: { type: 
   const collection_type = params?.type;
   const collections = await getCollections(collection_type);
 
-  console.log('collections', collections);
-
   return (
     <>
       <div className="mb-4 flex w-full flex-row items-center justify-between">

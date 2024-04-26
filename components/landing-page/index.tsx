@@ -1,8 +1,5 @@
-import { getMetaObjects } from 'lib/shopify';
-
 export const LandingPage = async () => {
-  const metaObject = await getMetaObjects('testimonial');
-  console.log(metaObject[0].fields, 'META OBJECT');
+  // const metaObject = await getMetaObjects('testimonial');
   return (
     <div>
       <h1>Welcome to our store!</h1>

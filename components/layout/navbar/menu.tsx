@@ -28,7 +28,6 @@ const AccordianMenu = ({
         <ul className="flex flex-col">
           {menu.map((item: Menu, index) => (
             <>
-              {console.log('KEY, ', item.title, item.path)}
               {item.items && item.items.length > 0 ? (
                 <AccordionItem
                   className="p-0 transition-colors "

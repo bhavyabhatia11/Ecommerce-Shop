@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import FilterItemDropdown from './dropdown';
 import { FilterItem } from './item';
 
-export type ListItem = SortFilterItem | PathFilterItem | PriceRangeItem;
+export type ListItem = SortFilterItem | string | PriceRangeItem;
 export type PathFilterItem = { title: string; path: string };
 
 function FilterItemList({ list }: { list: ListItem[] }) {

@@ -243,7 +243,12 @@ const reshapeProduct = (product: ShopifyProduct, filterHiddenProducts: boolean =
   };
 };
 
-const reshapeProducts = (products: ShopifyProduct[]) => {
+const reshapeProducts = (
+  products: ShopifyProduct[],
+  minPrice: string | undefined = undefined,
+  maxPrice: string | undefined = undefined,
+  stones: string[] | undefined = undefined
+) => {
   const reshapedProducts = [];
 
   for (const product of products) {
@@ -251,7 +256,21 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
       const reshapedProduct = reshapeProduct(product);
 
       if (reshapedProduct) {
-        reshapedProducts.push(reshapedProduct);
+        const minPriceFilter =
+          parseInt(reshapedProduct.priceRange.minVariantPrice.amount) >=
+          (minPrice ? parseInt(minPrice) : 0);
+        const maxPriceFilter =
+          parseInt(reshapedProduct.priceRange.maxVariantPrice.amount) <=
+          (maxPrice ? parseInt(maxPrice) : Number.MAX_SAFE_INTEGER);
+        let hasStones = true;
+        if (stones && stones.length > 0) {
+          const stonesArray = JSON.parse(reshapedProduct?.stones?.value || '[]') as string[];
+          hasStones = stones.some((elem) => stonesArray.includes(elem));
+        }
+
+        if (minPriceFilter && maxPriceFilter && hasStones) {
+          reshapedProducts.push(reshapedProduct);
+        }
       }
     }
   }
@@ -366,11 +385,17 @@ export async function getCollection(handle: string): Promise<Collection | undefi
 export async function getCollectionProducts({
   collection,
   reverse,
-  sortKey
+  sortKey,
+  minPrice,
+  maxPrice,
+  stones
 }: {
   collection: string;
   reverse?: boolean;
   sortKey?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  stones?: string[];
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyCollectionProductsOperation>({
     query: getCollectionProductsQuery,
@@ -387,7 +412,12 @@ export async function getCollectionProducts({
     return [];
   }
 
-  return reshapeProducts(removeEdgesAndNodes(res.body.data.collection.products));
+  return reshapeProducts(
+    removeEdgesAndNodes(res.body.data.collection.products),
+    minPrice,
+    maxPrice,
+    stones
+  );
 }
 
 export async function getCollections(type = ''): Promise<Collection[]> {
@@ -466,13 +496,15 @@ export async function getProducts({
   reverse,
   sortKey,
   minPrice,
-  maxPrice
+  maxPrice,
+  stones
 }: {
   query?: string;
   reverse?: boolean;
   sortKey?: string;
   minPrice?: string;
   maxPrice?: string;
+  stones?: string[];
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
@@ -480,13 +512,11 @@ export async function getProducts({
     variables: {
       query,
       reverse,
-      sortKey,
-      minPrice,
-      maxPrice
+      sortKey
     }
   });
 
-  return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+  return reshapeProducts(removeEdgesAndNodes(res.body.data.products), minPrice, maxPrice, stones);
 }
 
 export async function getFilters(): Promise<{
@@ -508,7 +538,6 @@ export async function getMetaObjects(handle: string): Promise<any> {
       handle
     }
   });
-  // console.log('RAW', res.body.data.metaobjects, 'META OBJECTS');
   return reshapeMetaObjects(removeEdgesAndNodes(res.body.data.metaobjects));
 }
 

@@ -14,7 +14,6 @@ import { usePathname } from 'next/navigation';
 export default function Breadcrumbs() {
   const pathname = usePathname();
   const segments = pathname.split('/').filter((segment) => segment !== '');
-  console.log('segments', segments);
   return (
     <Breadcrumb className="font-serif">
       <BreadcrumbList>

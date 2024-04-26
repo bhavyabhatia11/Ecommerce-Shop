@@ -40,6 +40,15 @@ export const TAGS = {
   meta: 'meta'
 };
 
+type StoneColors = {
+  [key: string]: string;
+};
+
+export const STONE_COLORS: StoneColors = {
+  Emarald: '#34FC34',
+  Ruby: '#FF9920'
+};
+
 export const HIDDEN_PRODUCT_TAG = 'nextjs-frontend-hidden';
 export const DEFAULT_OPTION = 'Default Title';
 export const SHOPIFY_GRAPHQL_API_ENDPOINT = '/api/2023-01/graphql.json';
