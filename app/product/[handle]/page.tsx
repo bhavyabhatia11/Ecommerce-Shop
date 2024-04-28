@@ -3,11 +3,13 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { GridTileImage } from 'components/grid/tile';
+import Label from 'components/label';
 import { Gallery } from 'components/product/gallery';
 import { ProductDescription } from 'components/product/product-description';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations } from 'lib/shopify';
-import { Image } from 'lib/shopify/types';
+import { Image as ImageType } from 'lib/shopify/types';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // export const runtime = 'edge';
@@ -52,7 +54,7 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: { params: { handle: string } }) {
   const product = await getProduct(params.handle);
-
+  console.log('HELON', product);
   if (!product) return notFound();
 
   const productJsonLd = {
@@ -80,16 +82,16 @@ export default async function ProductPage({ params }: { params: { handle: string
           __html: JSON.stringify(productJsonLd)
         }}
       />
-      <div className="mx-auto mt-40 max-w-screen-2xl px-4">
-        <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12 lg:flex-row lg:gap-8">
-          <div className="h-full w-full basis-full lg:basis-4/6">
+      <div className="mx-auto mt-24 max-w-screen-2xl px-4">
+        <div className="flex flex-col lg:flex-row lg:gap-8 lg:py-8">
+          <div className="h-full w-full basis-full ">
             <Suspense
               fallback={
                 <div className="relative aspect-[3/4] h-full max-h-[550px] w-full overflow-hidden" />
               }
             >
               <Gallery
-                images={product.images.map((image: Image) => ({
+                images={product.images.map((image: ImageType) => ({
                   src: image.url,
                   altText: image.altText
                 }))}
@@ -97,10 +99,55 @@ export default async function ProductPage({ params }: { params: { handle: string
             </Suspense>
           </div>
 
-          <div className="basis-full lg:basis-2/6">
+          <div className="basis-full">
             <ProductDescription product={product} />
           </div>
         </div>
+
+        {product?.info?.value && (
+          <div className="font-400 item-center my-6 text-lg leading-tight lg:my-12 lg:text-6xl">
+            {product.info.value}
+          </div>
+        )}
+
+        {product?.product_details?.value && (
+          <div className="my-6 flex flex-col justify-between font-serif tracking-widest text-neutral-500 lg:my-20 lg:flex-row">
+            <div className="mb-4 text-lg lg:mb-0">DESCRIPTION AND DETAILS</div>
+            <div className="flex w-full flex-col gap-2 lg:w-[60%]">
+              {JSON.parse(product.product_details.value).map((detail: string, index: number) => (
+                <div className="border-b pb-2" key={index}>
+                  {detail}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {product.images.length > 2 && (
+          <div className="my-4 flex flex-col gap-4 lg:relative lg:left-1/2 lg:my-20 lg:w-screen lg:-translate-x-1/2 lg:transform lg:flex-row lg:gap-6">
+            {product.images.slice(-2).map(
+              (
+                image,
+                index // Added image and index parameters
+              ) => (
+                <div
+                  key={index}
+                  className="relative aspect-[4/3] max-h-[533px] w-full overflow-hidden"
+                >
+                  {' '}
+                  {/* Added key prop */}
+                  <Image
+                    key={index} // Added key prop for the Image component
+                    className="object-cover"
+                    fill
+                    alt={image?.altText as string}
+                    src={image?.url as string}
+                  />
+                </div>
+              )
+            )}
+          </div>
+        )}
         <Suspense>
           <RelatedProducts id={product.id} />
         </Suspense>
@@ -115,14 +162,12 @@ async function RelatedProducts({ id }: { id: string }) {
   if (!relatedProducts.length) return null;
 
   return (
-    <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
-      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
+    <div className="border-t pb-20 pt-8">
+      <h2 className="mb-4 text-2xl lg:text-4xl">Related Products</h2>
+
+      <ul className="no-scrollbar flex w-full gap-4 overflow-x-auto pt-1 lg:gap-12">
         {relatedProducts.map((product) => (
-          <li
-            key={product.handle}
-            className="aspect-[3/4] w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
-          >
+          <li key={product.handle} className="aspect-[3/4] w-1/2 flex-none lg:w-1/4 ">
             <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
               <GridTileImage
                 alt={product.title}
@@ -132,9 +177,15 @@ async function RelatedProducts({ id }: { id: string }) {
                   currencyCode: product.priceRange.maxVariantPrice.currencyCode
                 }}
                 src={product.featuredImage?.url}
-                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
+                sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
               />
             </Link>
+            <Label
+              title={product.title}
+              amount={product.priceRange.maxVariantPrice.amount}
+              currencyCode={product.priceRange.maxVariantPrice.currencyCode}
+              position="bottom"
+            />
           </li>
         ))}
       </ul>

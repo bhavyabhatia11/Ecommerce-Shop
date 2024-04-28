@@ -81,7 +81,7 @@ export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
         <SheetTrigger>
           <Bars3Icon className="h-4" />
         </SheetTrigger>
-        <SheetContent side="left" className="bg-primary p-0 font-serif text-lg tracking-wide">
+        <SheetContent side="left" className="bg-primary p-0 font-serif text-lg tracking-widest">
           <AccordianMenu menu={menu} className="" level={0} />
         </SheetContent>
       </Sheet>

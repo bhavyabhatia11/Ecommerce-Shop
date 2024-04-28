@@ -1,7 +1,7 @@
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
-import LogoSquare from 'components/logo-square';
+import HeaderLogoIcon from 'components/icons/header-logo';
 import { getMenu } from 'lib/shopify';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -22,7 +22,7 @@ export default async function Navbar() {
 
         <div className="absolute left-1/2 flex -translate-x-1/2 transform items-center justify-center md:w-auto lg:mr-6">
           <Link href="/" className="flex items-center">
-            <LogoSquare color="white" />
+            <HeaderLogoIcon />
           </Link>
         </div>
 

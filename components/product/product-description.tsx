@@ -8,25 +8,27 @@ import { VariantSelector } from './variant-selector';
 export function ProductDescription({ product }: { product: Product }) {
   return (
     <>
-      <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
-        <h1 className="mb-2 text-5xl font-medium">{product.title}</h1>
-        <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
+      <div className="mb-6 flex flex-col items-start border-b pt-8 text-left lg:mb-10 lg:pt-0">
+        <h1 className="mb-2 font-sans text-2xl font-medium lg:mb-10 lg:text-5xl">
+          {product.title}
+        </h1>
+        <div className="mb-2 mr-auto w-auto font-serif text-2xl tracking-widest lg:mb-10 lg:text-3xl">
           <Price
+            className="font-serif"
             amount={product.priceRange.maxVariantPrice.amount}
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
           />
         </div>
+        {product.descriptionHtml ? (
+          <Prose
+            className="!mx-0 mb-4 text-left font-serif text-sm tracking-widest text-neutral-500 lg:mb-6"
+            html={product.descriptionHtml}
+          />
+        ) : null}
       </div>
       <Suspense fallback={null}>
         <VariantSelector options={product.options} variants={product.variants} />
       </Suspense>
-
-      {product.descriptionHtml ? (
-        <Prose
-          className="mb-6 text-sm leading-tight dark:text-white/[60%]"
-          html={product.descriptionHtml}
-        />
-      ) : null}
 
       <Suspense fallback={null}>
         <AddToCart variants={product.variants} availableForSale={product.availableForSale} />

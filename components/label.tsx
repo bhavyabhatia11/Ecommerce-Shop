@@ -11,12 +11,12 @@ const Label = ({
   position?: 'bottom' | 'center';
 }) => {
   return (
-    <div className="py:4 font-serif">
-      <div className="items-left flex flex-col text-xs ">
-        <h3 className="mr-4 line-clamp-2 flex-grow ">{title}</h3>
+    <div className="py-4 font-serif tracking-widest">
+      <div className="items-left flex flex-col text-xs">
+        <h3 className="mr-4 line-clamp-2 flex-grow text-base">{title}</h3>
         {amount && currencyCode && (
           <Price
-            className="flex-none "
+            className="flex-none text-base text-neutral-500"
             amount={amount}
             currencyCode={currencyCode}
             currencyCodeClassName="hidden @[275px]/label:inline"

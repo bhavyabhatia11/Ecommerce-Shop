@@ -45,7 +45,7 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
       <DynamicTag
         prefetch={!active ? false : undefined}
         href={href}
-        className={clsx('w-full p-4 tracking-[0.42px] hover:bg-beige-dark hover:no-underline', {
+        className={clsx('w-full p-4 tracking-widest hover:bg-beige-dark hover:no-underline', {
           'bg-beige-dark': active
         })}
       >
@@ -88,7 +88,7 @@ function PriceRangeFilterItem({ item }: { item: PriceRangeItem }) {
     <li className="flex text-sm text-black dark:text-white" key={`${item.min} - ${item.max}`}>
       <div
         onClick={togglePriceRange}
-        className={clsx('w-full p-4 tracking-[0.42px] hover:bg-beige-dark hover:no-underline', {
+        className={clsx('w-full p-4 tracking-widest hover:bg-beige-dark hover:no-underline', {
           '': active
         })}
       >
@@ -139,7 +139,7 @@ function StoneFilterItem({ item }: { item: string }) {
   return (
     <li className="flex text-sm text-black dark:text-white" key={item}>
       <div
-        className={clsx('w-full p-4 tracking-[0.42px] hover:bg-beige-dark hover:no-underline', {
+        className={clsx('w-full p-4 tracking-widest hover:bg-beige-dark hover:no-underline', {
           '': active
         })}
       >

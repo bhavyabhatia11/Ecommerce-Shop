@@ -128,6 +128,8 @@ export type ShopifyProduct = {
     minVariantPrice: Money;
   };
   stones: { value: string };
+  info: { value: string };
+  product_details: { value: string };
   variants: Connection<ProductVariant>;
   featuredImage: Image;
   images: Connection<Image>;

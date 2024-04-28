@@ -27,6 +27,12 @@ export const productFragment = /* GraphQL */ `
     stones: metafield(namespace: "custom", key: "stones") {
       value
     }
+    info: metafield(namespace: "custom", key: "info") {
+      value
+    }
+    product_details: metafield(namespace: "custom", key: "product_details") {
+      value
+    }
     variants(first: 250) {
       edges {
         node {

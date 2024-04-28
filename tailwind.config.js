@@ -53,8 +53,8 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out'
       },
       fontFamily: {
-        sans: ['Libre Caslon Display', 'sans-serif'],
-        serif: ['Courier Prime', 'serif']
+        sans: ['AmstelvarAlpha', 'serif'],
+        serif: ['Courier Prime', 'monospace']
       },
       fontWeight: {
         medium: 400

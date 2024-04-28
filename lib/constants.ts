@@ -49,8 +49,8 @@ export const STONE_COLORS: StoneColors = {
   Ruby: '#FF9920'
 };
 
-export const baseUrl = process.env.PRODUCTION_URL
-  ? `https://${process.env.PRODUCTION_URL}`
+export const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://www.somethingsimple.in`
   : 'http://localhost:8080';
 
 export const HIDDEN_PRODUCT_TAG = 'nextjs-frontend-hidden';

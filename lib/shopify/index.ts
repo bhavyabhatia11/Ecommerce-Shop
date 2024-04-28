@@ -475,7 +475,6 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
       handle
     }
   });
-
   return reshapeProduct(res.body.data.product, false);
 }
 
@@ -515,7 +514,6 @@ export async function getProducts({
       sortKey
     }
   });
-
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products), minPrice, maxPrice, stones);
 }
 
