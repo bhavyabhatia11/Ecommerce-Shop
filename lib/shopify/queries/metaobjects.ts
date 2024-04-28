@@ -1,6 +1,6 @@
 export const getMetaObjectsQuery = /* GraphQL */ `
-  query getMetaObjects($handle: String!) {
-    metaobjects(type: $handle, first: 10) {
+  query getMetaObjects($type: String!) {
+    metaobjects(type: $type, first: 10) {
       edges {
         node {
           id

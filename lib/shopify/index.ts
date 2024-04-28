@@ -528,12 +528,12 @@ export async function getFilters(): Promise<{
   return reshapeFilters(removeEdgesAndNodes(res.body.data.products));
 }
 
-export async function getMetaObjects(handle: string): Promise<any> {
+export async function getMetaObjects(type: string): Promise<any> {
   const res = await shopifyFetch<ShopifyMetaObjectOperation>({
     query: getMetaObjectsQuery,
     tags: [TAGS.meta],
     variables: {
-      handle
+      type
     }
   });
   return reshapeMetaObjects(removeEdgesAndNodes(res.body.data.metaobjects));

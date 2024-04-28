@@ -294,6 +294,6 @@ export type ShopifyMetaObjectOperation = {
     metaobjects: Connection<ShopifyMetaObject>;
   };
   variables: {
-    handle: string;
+    type: string;
   };
 };

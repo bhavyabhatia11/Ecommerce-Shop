@@ -6,8 +6,9 @@ import { GridTileImage } from 'components/grid/tile';
 import Label from 'components/label';
 import { Gallery } from 'components/product/gallery';
 import { ProductDescription } from 'components/product/product-description';
-import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct, getProductRecommendations } from 'lib/shopify';
+import Prose from 'components/prose';
+import { HIDDEN_PRODUCT_TAG, toHTML } from 'lib/constants';
+import { getMetaObjects, getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image as ImageType } from 'lib/shopify/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -54,7 +55,12 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: { params: { handle: string } }) {
   const product = await getProduct(params.handle);
-  console.log('HELON', product);
+  const policies = await getMetaObjects('policies');
+  const shippingPolicy = policies.find(
+    (policy: { type: string }) => policy.type === 'shipping-and-returns'
+  );
+
+  console.log('HELON', shippingPolicy);
   if (!product) return notFound();
 
   const productJsonLd = {
@@ -148,6 +154,20 @@ export default async function ProductPage({ params }: { params: { handle: string
             )}
           </div>
         )}
+
+        <div className="flex justify-end border-t py-8 lg:py-40">
+          <div className="flex flex-col gap-8 lg:w-1/2 lg:gap-16">
+            <div className="text-lg lg:text-6xl"> {shippingPolicy.name}</div>
+            <div>
+              {' '}
+              <Prose
+                className="flex flex-col gap-4 font-serif text-sm tracking-widest text-neutral-500 lg:gap-8 lg:text-base"
+                html={toHTML(shippingPolicy.description) as string}
+              />{' '}
+            </div>
+          </div>
+        </div>
+
         <Suspense>
           <RelatedProducts id={product.id} />
         </Suspense>
