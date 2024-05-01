@@ -27,6 +27,7 @@ import {
 
 import { getMetaObjectsQuery } from './queries/metaobjects';
 
+import { createCustomerMutation } from './mutations/customer';
 import {
   Cart,
   Collection,
@@ -43,6 +44,7 @@ import {
   ShopifyCollectionProductsOperation,
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
+  ShopifyCreateCustomerOperation,
   ShopifyMenuItem,
   ShopifyMenuOperation,
   ShopifyMetaObject,
@@ -129,9 +131,11 @@ const reshapeMetaObject = (metaobject: ShopifyMetaObject) => {
   if (!metaobject) {
     return undefined;
   }
-
   const fields = metaobject.fields.reduce((acc: any, field) => {
     acc[field.key] = field.value;
+    if (field.reference) {
+      Object.assign(acc, field.reference);
+    }
     return acc;
   }, {});
 
@@ -302,11 +306,12 @@ const reshapeFilters = (products: ShopifyProduct[]) => {
 };
 
 export async function createCart(): Promise<Cart> {
+  console.log('Creating cart');
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
     cache: 'no-store'
   });
-
+  console.log('Created cart', res);
   return reshapeCart(res.body.data.cartCreate.cart);
 }
 
@@ -352,6 +357,19 @@ export async function updateCart(
   });
 
   return reshapeCart(res.body.data.cartLinesUpdate.cart);
+}
+
+export async function createCustomer(input: any): Promise<String> {
+  console.log('input customer', input);
+  const res = await shopifyFetch<ShopifyCreateCustomerOperation>({
+    query: createCustomerMutation,
+    variables: {
+      input
+    },
+    cache: 'no-store'
+  });
+  console.log('ressss', res);
+  return 'done';
 }
 
 export async function getCart(cartId: string): Promise<Cart | undefined> {
@@ -536,6 +554,7 @@ export async function getMetaObjects(type: string): Promise<any> {
       type
     }
   });
+
   return reshapeMetaObjects(removeEdgesAndNodes(res.body.data.metaobjects));
 }
 

@@ -4,12 +4,13 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 import { Accordion, AccordionContent, AccordionTrigger } from '@/components/ui/accordion';
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { AccordionItem } from '@radix-ui/react-accordion';
 import clsx from 'clsx';
 import { baseUrl } from 'lib/constants';
 import { Menu } from 'lib/shopify/types';
+import { X } from 'lucide-react';
 import Link from 'next/link';
 
 const levelToPadding = ['pl-2', 'pl-8', 'pl-12'];
@@ -81,7 +82,15 @@ export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
         <SheetTrigger>
           <Bars3Icon className="h-4" />
         </SheetTrigger>
-        <SheetContent side="left" className="bg-primary p-0 font-serif text-lg tracking-widest">
+        <SheetContent
+          side="left"
+          className="w-full bg-primary p-0 font-serif text-lg tracking-widest"
+        >
+          <SheetHeader>
+            <SheetClose className="mx-3 my-4 block rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary lg:hidden">
+              <X className="h-6 w-6" color="black" />
+            </SheetClose>
+          </SheetHeader>
           <AccordianMenu menu={menu} className="" level={0} />
         </SheetContent>
       </Sheet>

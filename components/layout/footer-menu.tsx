@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import Grid from 'components/grid';
 import { baseUrl } from 'lib/constants';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
@@ -9,6 +10,7 @@ import { useEffect, useState } from 'react';
 
 const FooterMenuItem = ({ item }: { item: Menu }) => {
   const pathname = usePathname();
+
   const [active, setActive] = useState(pathname === item.path);
 
   useEffect(() => {
@@ -34,11 +36,15 @@ export default function FooterMenu({ menu }: { menu: Menu[] }) {
 
   return (
     <nav>
-      <ul>
+      <Grid className="grid-cols-1 !gap-0 !gap-x-20 gap-y-0 lg:grid-flow-col lg:grid-rows-6">
         {menu.map((item: Menu) => {
-          return <FooterMenuItem key={item.title} item={item} />;
+          return (
+            <Grid.Item key={item.title} className="animate-fadeIn aspect-auto w-full">
+              <FooterMenuItem key={item.title} item={item} />
+            </Grid.Item>
+          );
         })}
-      </ul>
+      </Grid>
     </nav>
   );
 }

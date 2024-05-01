@@ -145,6 +145,8 @@ export type ShopifyMetaObject = {
   fields: {
     key: string;
     value: string;
+    reference: any;
+    references: any[];
   }[];
 };
 
@@ -160,6 +162,13 @@ export type ShopifyCartOperation = {
   };
   variables: {
     cartId: string;
+  };
+};
+
+export type ShopifyCreateCustomerOperation = {
+  data: { cartCreate: { cart: ShopifyCart } };
+  variables: {
+    input: any;
   };
 };
 

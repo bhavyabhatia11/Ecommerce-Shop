@@ -60,7 +60,6 @@ export default async function ProductPage({ params }: { params: { handle: string
     (policy: { type: string }) => policy.type === 'shipping-and-returns'
   );
 
-  console.log('HELON', shippingPolicy);
   if (!product) return notFound();
 
   const productJsonLd = {

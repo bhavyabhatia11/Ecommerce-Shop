@@ -1,3 +1,5 @@
+import imageFragment from '../fragments/image';
+
 export const getMetaObjectsQuery = /* GraphQL */ `
   query getMetaObjects($type: String!) {
     metaobjects(type: $type, first: 10) {
@@ -9,12 +11,19 @@ export const getMetaObjectsQuery = /* GraphQL */ `
             key
             value
             type
+            reference {
+              ... on MediaImage {
+                image {
+                  ...image
+                }
+              }
+            }
             references(first: 10) {
               edges {
                 node {
                   ... on MediaImage {
                     image {
-                      originalSrc
+                      url
                     }
                   }
                   ... on Collection {
@@ -31,6 +40,7 @@ export const getMetaObjectsQuery = /* GraphQL */ `
       }
     }
   }
+  ${imageFragment}
 `;
 
 export const getMetaObjectQuery = /* GraphQL */ `

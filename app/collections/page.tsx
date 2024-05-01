@@ -1,6 +1,6 @@
 import Grid from 'components/grid';
 import ProductGridItems from 'components/layout/product-grid-items';
-import { baseUrl, defaultSort, sorting } from 'lib/constants';
+import { defaultSort, sorting } from 'lib/constants';
 import { getFilters, getProducts } from 'lib/shopify';
 import Filters from './filters';
 
@@ -37,8 +37,6 @@ export default async function SearchPage({
   const filters = await getFilters();
   const resultsText = products.length > 1 ? 'Results' : 'Result';
   const itemsText = products.length > 1 ? 'Items' : 'Item';
-
-  console.log('BASE', baseUrl);
 
   return (
     <>

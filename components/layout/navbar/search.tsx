@@ -29,7 +29,7 @@ export default function Search() {
   return (
     <Popover>
       <PopoverTrigger>
-        <MagnifyingGlassIcon className="h-4 " />
+        <MagnifyingGlassIcon className="h-4 pr-1 lg:h-5 lg:pr-4 " />
       </PopoverTrigger>
       <PopoverContent className="mt-7 w-[100vw] bg-primary bg-opacity-75 backdrop-blur-sm">
         <div>

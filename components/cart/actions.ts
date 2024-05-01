@@ -1,7 +1,14 @@
 'use server';
 
 import { TAGS } from 'lib/constants';
-import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/shopify';
+import {
+  addToCart,
+  createCart,
+  createCustomer,
+  getCart,
+  removeFromCart,
+  updateCart
+} from 'lib/shopify';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
@@ -77,6 +84,19 @@ export async function updateItemQuantity(
       }
     ]);
     revalidateTag(TAGS.cart);
+  } catch (e) {
+    return 'Error updating item quantity';
+  }
+}
+
+export async function addCustomer(email: string) {
+  try {
+    const customer = await createCustomer({
+      acceptsMarketing: true,
+      email: email,
+      password: 'password'
+    });
+    console.log('customer', customer);
   } catch (e) {
     return 'Error updating item quantity';
   }

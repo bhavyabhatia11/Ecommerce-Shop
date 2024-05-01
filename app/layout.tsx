@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/toaster';
 import Footer from 'components/layout/footer';
 import Navbar from 'components/layout/navbar';
 import { GeistSans } from 'geist/font';
@@ -39,6 +40,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <Navbar />
         <Suspense>
           <main>{children}</main>
+          <Toaster />
         </Suspense>
         <Suspense>
           <Footer />
