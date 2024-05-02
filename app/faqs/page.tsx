@@ -23,7 +23,7 @@ export default async function FAQs() {
   if (!faqs) return notFound();
 
   return (
-    <div className="mx-auto my-40 max-w-screen-2xl px-4">
+    <div className="mx-auto my-24 max-w-screen-2xl px-4 lg:my-40">
       <Breadcrumb className="font-serif">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -40,17 +40,17 @@ export default async function FAQs() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="flex lg:py-8">
-        <div className="text-lg lg:w-1/2 lg:text-6xl"> Something Confusing ? </div>
-        <div className="mt-40 flex flex-col gap-8 lg:w-1/2 lg:gap-16">
+      <div className="flex flex-col lg:flex-row lg:py-8">
+        <div className="py-2 pb-4 text-2xl lg:py-8 lg:text-6xl"> Something Confusing ? </div>
+        <div className="flex flex-col gap-8 lg:mt-40 lg:w-1/2 lg:gap-16">
           <Accordion type="single" collapsible>
             {faqs.map((faq: any, index: number) => {
               return (
                 <AccordionItem className="p-0 transition-colors " key={index} value={faq.question}>
-                  <AccordionTrigger className="font-serif text-lg hover:no-underline">
+                  <AccordionTrigger className="font-serif text-base hover:no-underline lg:text-lg">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="pb-4">
+                  <AccordionContent className="lg:pb-4">
                     <Prose
                       className="flex flex-col gap-4 font-serif text-sm tracking-widest text-neutral-500 lg:gap-8 lg:text-base"
                       html={toHTML(faq.ans) as string}

@@ -2,6 +2,7 @@
 
 import { TAGS } from 'lib/constants';
 import {
+  addGiftNoteToCart,
   addToCart,
   createCart,
   createCustomer,
@@ -84,6 +85,8 @@ export async function updateItemQuantity(
       }
     ]);
     revalidateTag(TAGS.cart);
+
+    await addGiftNoteToCart(cartId, 'A gifting note!!');
   } catch (e) {
     return 'Error updating item quantity';
   }
@@ -91,12 +94,11 @@ export async function updateItemQuantity(
 
 export async function addCustomer(email: string) {
   try {
-    const customer = await createCustomer({
+    await createCustomer({
       acceptsMarketing: true,
       email: email,
       password: 'password'
     });
-    console.log('customer', customer);
   } catch (e) {
     return 'Error updating item quantity';
   }

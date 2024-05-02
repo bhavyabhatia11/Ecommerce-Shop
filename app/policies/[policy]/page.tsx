@@ -17,7 +17,7 @@ export default async function PolicyPage({ params }: { params?: { policy: string
   const policy = policies.find((policy: { type: string }) => policy.type === params?.policy);
 
   return (
-    <div className="mx-auto my-40 max-w-screen-2xl px-4">
+    <div className="mx-auto my-24 max-w-screen-2xl px-4 lg:my-40">
       <Breadcrumb className="font-serif">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -40,9 +40,9 @@ export default async function PolicyPage({ params }: { params?: { policy: string
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="flex lg:py-8">
-        <div className="text-lg lg:w-1/2 lg:text-6xl"> {policy.name}</div>
-        <div className="mt-40 flex flex-col gap-8 lg:w-1/2 lg:gap-16">
+      <div className="flex flex-col lg:flex-row lg:py-8">
+        <div className="py-2 pb-4 text-2xl lg:py-8 lg:text-6xl"> {policy.name}</div>
+        <div className="flex flex-col gap-8 lg:mt-40 lg:w-1/2 lg:gap-16">
           <div>
             {' '}
             <Prose

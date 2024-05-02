@@ -41,8 +41,8 @@ export default async function SearchPage({
   return (
     <>
       <div className="mb-4 flex w-full flex-row items-center justify-between">
-        <div className="font-serif text-5xl">{searchValue ?? 'All'}</div>
-        <div className="font-serif text-2xl">
+        <div className="text-2xl lg:text-5xl">{searchValue ?? 'All'}</div>
+        <div className="hidden text-2xl lg:block">
           {products.length} {searchValue ? resultsText : itemsText}
         </div>
       </div>

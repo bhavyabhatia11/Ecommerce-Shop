@@ -206,7 +206,7 @@ export default function Filters({ filters }: { filters: any }) {
         <SortByFilter />
       </Grid>
 
-      <div className="my-2 flex !gap-0 border-y font-serif lg:hidden">
+      <div className="my-4 flex !gap-0 border-y font-serif lg:hidden">
         <FiltersAndSort filters={filters} />
       </div>
     </>

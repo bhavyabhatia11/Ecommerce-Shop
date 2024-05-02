@@ -6,6 +6,7 @@ import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   addToCartMutation,
+  cartGiftNoteMutation,
   createCartMutation,
   editCartItemsMutation,
   removeFromCartMutation
@@ -45,6 +46,7 @@ import {
   ShopifyCollectionsOperation,
   ShopifyCreateCartOperation,
   ShopifyCreateCustomerOperation,
+  ShopifyGiftNoteCartOperation,
   ShopifyMenuItem,
   ShopifyMenuOperation,
   ShopifyMetaObject,
@@ -306,12 +308,10 @@ const reshapeFilters = (products: ShopifyProduct[]) => {
 };
 
 export async function createCart(): Promise<Cart> {
-  console.log('Creating cart');
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
     cache: 'no-store'
   });
-  console.log('Created cart', res);
   return reshapeCart(res.body.data.cartCreate.cart);
 }
 
@@ -359,16 +359,28 @@ export async function updateCart(
   return reshapeCart(res.body.data.cartLinesUpdate.cart);
 }
 
+export async function addGiftNoteToCart(cartId: string, note: string): Promise<Cart> {
+  const res = await shopifyFetch<ShopifyGiftNoteCartOperation>({
+    query: cartGiftNoteMutation,
+    variables: {
+      cartId,
+      note
+    },
+    cache: 'no-store'
+  });
+
+  return reshapeCart(res.body.data.cartLinesUpdate.cart);
+}
+
 export async function createCustomer(input: any): Promise<String> {
-  console.log('input customer', input);
-  const res = await shopifyFetch<ShopifyCreateCustomerOperation>({
+  await shopifyFetch<ShopifyCreateCustomerOperation>({
     query: createCustomerMutation,
     variables: {
       input
     },
     cache: 'no-store'
   });
-  console.log('ressss', res);
+
   return 'done';
 }
 

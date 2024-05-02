@@ -13,7 +13,7 @@ const Label = ({
   return (
     <div className="py-4 font-serif tracking-widest">
       <div className="items-left flex flex-col text-xs">
-        <h3 className="mr-4 line-clamp-2 flex-grow text-base">{title}</h3>
+        <h3 className="line-clamp-2 flex-grow text-base">{title}</h3>
         {amount && currencyCode && (
           <Price
             className="flex-none text-base text-neutral-500"

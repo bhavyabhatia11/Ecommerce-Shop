@@ -219,6 +219,18 @@ export type ShopifyUpdateCartOperation = {
   };
 };
 
+export type ShopifyGiftNoteCartOperation = {
+  data: {
+    cartLinesUpdate: {
+      cart: ShopifyCart;
+    };
+  };
+  variables: {
+    cartId: string;
+    note: string;
+  };
+};
+
 export type ShopifyCollectionOperation = {
   data: {
     collection: ShopifyCollection;
