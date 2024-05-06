@@ -66,7 +66,7 @@ export default async function AboutUs() {
           <div className="text-xl lg:text-6xl">{title}</div>
           <div className="lg:ml-20">
             <Prose
-              className="flex flex-col gap-4 font-serif text-sm tracking-widest text-neutral-500 lg:gap-8 lg:text-base"
+              className="flex flex-col gap-4 font-serif text-sm tracking-wider text-neutral-500 lg:gap-8 lg:text-base"
               html={toHTML(description) as string}
             />
           </div>

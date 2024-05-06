@@ -12,7 +12,7 @@ export function ProductDescription({ product }: { product: Product }) {
         <h1 className="mb-2 font-sans text-2xl font-medium lg:mb-10 lg:text-5xl">
           {product.title}
         </h1>
-        <div className="mb-2 mr-auto w-auto font-serif text-2xl tracking-widest lg:mb-10 lg:text-3xl">
+        <div className="mb-2 mr-auto w-auto font-serif text-2xl tracking-wider lg:mb-10 lg:text-3xl">
           <Price
             className="font-serif"
             amount={product.priceRange.maxVariantPrice.amount}
@@ -21,7 +21,7 @@ export function ProductDescription({ product }: { product: Product }) {
         </div>
         {product.descriptionHtml ? (
           <Prose
-            className="!mx-0 mb-4 text-left font-serif text-sm tracking-widest text-neutral-500 lg:mb-6"
+            className="!mx-0 mb-4 text-left font-serif text-sm tracking-wider text-neutral-500 lg:mb-6"
             html={product.descriptionHtml}
           />
         ) : null}

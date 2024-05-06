@@ -30,6 +30,7 @@ module.exports = {
         'navy-blue': '#0A1C2A',
         'brown-light': '#D6D1CA',
         'beige-light': '#E6E0D2',
+        'beige-lighter': '#F4EFEB',
         'beige-dark': '#E4DCD4',
         'gray-light': '#E4E4E4'
       },
@@ -53,11 +54,12 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out'
       },
       fontFamily: {
-        sans: ['AmstelvarAlpha', 'serif'],
+        sans: ['Libre Caslon Display', 'serif'],
         serif: ['Courier Prime', 'monospace']
       },
       fontWeight: {
-        medium: 400
+        medium: 400,
+        extralight: 200
       }
     }
   },

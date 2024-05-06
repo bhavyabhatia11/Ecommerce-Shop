@@ -13,7 +13,7 @@ import { Menu } from 'lib/shopify/types';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 
-const levelToPadding = ['pl-2', 'pl-8', 'pl-12'];
+const levelToPadding = ['pl-8', 'pl-16', 'pl-20'];
 const AccordianMenu = ({
   menu,
   className,
@@ -37,7 +37,7 @@ const AccordianMenu = ({
                   key={`${item.path}-${index}`}
                 >
                   <AccordionTrigger
-                    className={`py-2 pr-4 ${paddingLeft} text-lg hover:bg-beige-dark hover:text-neutral-500 hover:no-underline`}
+                    className={`py-4 pr-5 ${paddingLeft} text-base hover:bg-beige-dark hover:no-underline`}
                   >
                     <SheetClose asChild>
                       <Link href={`${baseUrl}/${item.path}`}>{item.title}</Link>
@@ -56,7 +56,7 @@ const AccordianMenu = ({
                 <SheetClose
                   asChild
                   key={`${item.path}-${index}`}
-                  className={`py-2 pr-4 ${paddingLeft} text-lg text-black transition-colors hover:bg-beige-dark hover:text-neutral-500`}
+                  className={`py-4 pr-5 ${paddingLeft} text-base text-black transition-colors hover:bg-beige-dark`}
                 >
                   <Link href={`${baseUrl}/${item.path}`}>{item.title}</Link>
                 </SheetClose>
@@ -80,11 +80,11 @@ export default function HamburgerMenu({ menu }: { menu: Menu[] }) {
     <>
       <Sheet>
         <SheetTrigger>
-          <Bars3Icon className="h-4" />
+          <Bars3Icon className="h-9 w-9 pb-[2px]" />
         </SheetTrigger>
         <SheetContent
           side="left"
-          className="w-full bg-primary p-0 font-serif text-lg tracking-widest"
+          className="w-full bg-primary p-0 font-serif text-lg tracking-[.03em]"
         >
           <SheetHeader>
             <SheetClose className="mx-3 my-4 block rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary lg:hidden">

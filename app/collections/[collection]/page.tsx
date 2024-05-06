@@ -52,9 +52,9 @@ export default async function CategoryPage({
 
   return (
     <section>
-      <div className="mb-4 flex w-full flex-row items-center justify-between">
+      <div className="mb-4 flex w-full flex-row items-end justify-between">
         <div className="text-2xl lg:text-5xl">{humanizeString(params.collection)}</div>
-        <div className="hidden lg:block lg:text-2xl">
+        <div className="hidden lg:block lg:text-xl">
           {products.length} {itemsText}
         </div>
       </div>

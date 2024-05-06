@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useFormState, useFormStatus } from 'react-dom';
 
 const buttonClasses =
-  'relative flex items-center justify-center p-4 w-full lg:text-lg text-base font-serif tracking-widest';
+  'relative flex items-center justify-center p-4 w-full lg:text-lg text-base font-serif tracking-wider';
 const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60 text-lg font-serif';
 
 function SubmitButton({

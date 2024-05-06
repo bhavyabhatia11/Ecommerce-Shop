@@ -17,6 +17,9 @@ export const getMetaObjectsQuery = /* GraphQL */ `
                   ...image
                 }
               }
+              ... on Collection {
+                handle
+              }
             }
             references(first: 10) {
               edges {
@@ -28,9 +31,6 @@ export const getMetaObjectsQuery = /* GraphQL */ `
                   }
                   ... on Collection {
                     handle
-                    title
-                    description
-                    updatedAt
                   }
                 }
               }

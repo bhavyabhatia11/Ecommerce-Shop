@@ -16,7 +16,7 @@ export default async function CollectionListPage({ params }: { params?: { type: 
 
   return (
     <>
-      <div className="mb-4 flex w-full flex-row items-center justify-between">
+      <div className="mb-4 flex w-full flex-row items-end justify-between">
         <div className="text-2xl lg:text-5xl">
           {collections.length === 0
             ? 'There are no collections that match!'

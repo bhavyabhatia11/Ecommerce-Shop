@@ -40,9 +40,9 @@ export default async function SearchPage({
 
   return (
     <>
-      <div className="mb-4 flex w-full flex-row items-center justify-between">
+      <div className="mb-4 flex w-full flex-row items-end justify-between">
         <div className="text-2xl lg:text-5xl">{searchValue ?? 'All'}</div>
-        <div className="hidden text-2xl lg:block">
+        <div className="hidden text-xl lg:block">
           {products.length} {searchValue ? resultsText : itemsText}
         </div>
       </div>

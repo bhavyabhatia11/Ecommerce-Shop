@@ -66,6 +66,17 @@ export type Page = {
   updatedAt: string;
 };
 
+export type Section = {
+  title: string;
+  subtitle: string;
+  description: string;
+  type: string;
+  priority: string;
+  images: { image: Image }[];
+  Collection: Collection;
+  handle: string;
+};
+
 export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
   variants: ProductVariant[];
   images: Image[];
@@ -146,7 +157,7 @@ export type ShopifyMetaObject = {
     key: string;
     value: string;
     reference: any;
-    references: any[];
+    references: Connection<any>;
   }[];
 };
 

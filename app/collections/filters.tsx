@@ -33,14 +33,16 @@ const SortByFilter = () => {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="hidden flex-row items-center justify-between p-4 lg:flex">
+        <DropdownMenuTrigger className="hidden flex-row items-center justify-between p-0 lg:flex lg:p-4">
           <div className="flex flex-col items-start">
-            <div className="text-lg">Sort By</div>
-            <div className="text-sm">{active?.title ? active.title : 'Chose an option'}</div>
+            <div className="">Sort By</div>
+            <div className="text-sm text-neutral-500">
+              {active?.title ? active.title : 'Chose an option'}
+            </div>
           </div>
           <ChevronDown className="mr-2 h-4 w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[501px] rounded-none bg-white p-0 font-serif">
+        <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[501px] rounded-none bg-white p-0 !font-serif">
           {sorting.map((item, key) => {
             return (
               <DropdownMenuItem asChild key={key}>
@@ -69,8 +71,8 @@ const PriceFilter = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="hidden flex-row items-center justify-between p-4 lg:flex">
         <div className="flex flex-col items-start">
-          <div className="text-lg">Price</div>
-          <div className="text-sm">
+          <div className="">Price</div>
+          <div className="text-sm text-neutral-500">
             {active
               ? active.max
                 ? `${active.min} - ${active.max}`
@@ -100,8 +102,8 @@ const StonesFilter = ({ stones }: { stones: string[] }) => {
       <DropdownMenu>
         <DropdownMenuTrigger className="hidden flex-row items-center justify-between border-x p-4 lg:flex">
           <div className="flex flex-col items-start">
-            <div className="text-lg">Stones</div>
-            <div className="text-sm">
+            <div className="">Stones</div>
+            <div className="text-sm text-neutral-500">
               {selectedStones && selectedStones.length > 0
                 ? `${selectedStones.length} selected`
                 : 'Chose an option'}
@@ -132,17 +134,19 @@ const FiltersAndSort = ({ filters }: { filters: any }) => {
   return (
     <>
       <Drawer>
-        <DrawerTrigger className="w-1/2 border-r p-0 text-left font-serif">Filters</DrawerTrigger>
-        <DrawerContent className="p-0">
+        <DrawerTrigger className="w-1/2 border-r p-3 text-left font-serif text-sm lg:text-base">
+          Filters
+        </DrawerTrigger>
+        <DrawerContent className="!p-0">
           <DrawerHeader>
-            <DrawerTitle className="text-left">Filters</DrawerTitle>
+            <DrawerTitle className="p-4 text-left font-serif">Filters</DrawerTitle>
             <DrawerDescription>
               <Accordion type="single" collapsible defaultValue="Price">
                 <AccordionItem className="p-0 transition-colors" value="Price" key="price">
-                  <AccordionTrigger className="border-b text-lg hover:no-underline">
+                  <AccordionTrigger className="border-b p-4 font-serif text-lg hover:no-underline">
                     <div className="flex flex-col items-start">
-                      <div className="text-lg">Price</div>
-                      <div className="text-sm">
+                      <div className="text-sm">Price</div>
+                      <div className="text-xs">
                         {active
                           ? active.max
                             ? `${active.min} - ${active.max}`
@@ -158,10 +162,10 @@ const FiltersAndSort = ({ filters }: { filters: any }) => {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem className="p-0 transition-colors" value="Stones" key="stones">
-                  <AccordionTrigger className=" text-lg hover:no-underline">
+                  <AccordionTrigger className="p-4 font-serif text-lg hover:no-underline">
                     <div className="flex flex-col items-start">
-                      <div className="text-lg">Stones</div>
-                      <div className="text-sm">
+                      <div className="text-sm">Stones</div>
+                      <div className="text-xs">
                         {selectedStones && selectedStones.length > 0
                           ? `${selectedStones.length} selected`
                           : 'Chose an option'}
@@ -182,10 +186,10 @@ const FiltersAndSort = ({ filters }: { filters: any }) => {
       </Drawer>
 
       <Drawer>
-        <DrawerTrigger className="w-1/2 p-4 text-left">Sort</DrawerTrigger>
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle className="text-left">Sort by</DrawerTitle>
+        <DrawerTrigger className="w-1/2 p-3 text-left text-sm lg:text-base">Sort</DrawerTrigger>
+        <DrawerContent className="p-0">
+          <DrawerHeader className="p-0">
+            <DrawerTitle className="p-4 text-left font-serif">Sort by</DrawerTitle>
             <DrawerDescription>
               <SortByFilter />
             </DrawerDescription>
@@ -200,13 +204,13 @@ const FiltersAndSort = ({ filters }: { filters: any }) => {
 export default function Filters({ filters }: { filters: any }) {
   return (
     <>
-      <Grid className="my-8 hidden grid-cols-3 !gap-0 border-y font-serif lg:grid">
+      <Grid className="mb-16 mt-8 hidden grid-cols-3 !gap-0 border-y font-serif lg:grid">
         <PriceFilter />
         <StonesFilter stones={filters.stones} />
         <SortByFilter />
       </Grid>
 
-      <div className="my-4 flex !gap-0 border-y font-serif lg:hidden">
+      <div className="mb-5 mt-4 flex !gap-0 border-y font-serif lg:hidden">
         <FiltersAndSort filters={filters} />
       </div>
     </>

@@ -1,4 +1,3 @@
-import { ThreeItemGrid } from 'components/grid/three-items';
 import { LandingPage } from 'components/landing-page';
 
 // export const runtime = 'edge';
@@ -12,9 +11,8 @@ export const metadata = {
 
 export default async function HomePage() {
   return (
-    <>
+    <div className="mt-[76px] w-full">
       <LandingPage />
-      <ThreeItemGrid />
-    </>
+    </div>
   );
 }

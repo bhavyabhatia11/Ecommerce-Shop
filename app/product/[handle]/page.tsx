@@ -116,7 +116,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         )}
 
         {product?.product_details?.value && (
-          <div className="my-6 flex flex-col justify-between font-serif tracking-widest text-neutral-500 lg:my-20 lg:flex-row">
+          <div className="my-6 flex flex-col justify-between font-serif tracking-wider text-neutral-500 lg:my-20 lg:flex-row">
             <div className="mb-4 text-lg lg:mb-0">DESCRIPTION AND DETAILS</div>
             <div className="flex w-full flex-col gap-2 lg:w-[60%]">
               {JSON.parse(product.product_details.value).map((detail: string, index: number) => (
@@ -160,7 +160,7 @@ export default async function ProductPage({ params }: { params: { handle: string
             <div>
               {' '}
               <Prose
-                className="flex flex-col gap-4 font-serif text-sm tracking-widest text-neutral-500 lg:gap-8 lg:text-base"
+                className="flex flex-col gap-4 font-serif text-sm tracking-wider text-neutral-500 lg:gap-8 lg:text-base"
                 html={toHTML(shippingPolicy.description) as string}
               />{' '}
             </div>

@@ -52,7 +52,7 @@ export default async function FAQs() {
                   </AccordionTrigger>
                   <AccordionContent className="lg:pb-4">
                     <Prose
-                      className="flex flex-col gap-4 font-serif text-sm tracking-widest text-neutral-500 lg:gap-8 lg:text-base"
+                      className="flex flex-col gap-4 font-serif text-sm tracking-wider text-neutral-500 lg:gap-8 lg:text-base"
                       html={toHTML(faq.ans) as string}
                     />
                   </AccordionContent>

@@ -45,9 +45,12 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
       <DynamicTag
         prefetch={!active ? false : undefined}
         href={href}
-        className={clsx('w-full p-4 tracking-widest hover:bg-beige-dark hover:no-underline', {
-          'bg-beige-dark': active
-        })}
+        className={clsx(
+          'w-full p-4 font-serif tracking-wider hover:bg-beige-lighter hover:no-underline lg:p-5',
+          {
+            'font-bold': active
+          }
+        )}
       >
         {item.title}
       </DynamicTag>
@@ -88,9 +91,12 @@ function PriceRangeFilterItem({ item }: { item: PriceRangeItem }) {
     <li className="flex text-sm text-black dark:text-white" key={`${item.min} - ${item.max}`}>
       <div
         onClick={togglePriceRange}
-        className={clsx('w-full p-4 tracking-widest hover:bg-beige-dark hover:no-underline', {
-          '': active
-        })}
+        className={clsx(
+          'w-full p-4 font-serif tracking-wider hover:bg-beige-lighter hover:no-underline lg:p-5',
+          {
+            '': active
+          }
+        )}
       >
         <div className="flex items-center justify-between">
           <label
@@ -101,7 +107,7 @@ function PriceRangeFilterItem({ item }: { item: PriceRangeItem }) {
           </label>
           <Checkbox
             id={`${item.min} - ${item.max}`}
-            className="bg-white"
+            className="bg-white "
             onClick={togglePriceRange}
             checked={active}
           />
@@ -139,14 +145,17 @@ function StoneFilterItem({ item }: { item: string }) {
   return (
     <li className="flex text-sm text-black dark:text-white" key={item}>
       <div
-        className={clsx('w-full p-4 tracking-widest hover:bg-beige-dark hover:no-underline', {
-          '': active
-        })}
+        className={clsx(
+          'w-full p-4 font-serif tracking-wider hover:bg-beige-lighter hover:no-underline lg:p-5',
+          {
+            '': active
+          }
+        )}
       >
         <div className="flex items-center justify-between">
           <label
             htmlFor={item}
-            className="flex items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            className="flex items-center gap-3 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             <div
               className={`h-4 w-4`}

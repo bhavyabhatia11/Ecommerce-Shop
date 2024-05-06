@@ -133,11 +133,17 @@ const reshapeMetaObject = (metaobject: ShopifyMetaObject) => {
   if (!metaobject) {
     return undefined;
   }
-  const fields = metaobject.fields.reduce((acc: any, field) => {
+  const fields = metaobject?.fields?.reduce((acc: any, field) => {
     acc[field.key] = field.value;
+
     if (field.reference) {
-      Object.assign(acc, field.reference);
+      acc = { ...acc, ...field.reference };
     }
+
+    if (field.references) {
+      acc['images'] = removeEdgesAndNodes(field.references);
+    }
+
     return acc;
   }, {});
 

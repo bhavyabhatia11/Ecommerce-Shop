@@ -29,26 +29,26 @@ export default function Search() {
   return (
     <Popover>
       <PopoverTrigger>
-        <MagnifyingGlassIcon className="h-4 pr-1 lg:h-5 lg:pr-4 " />
+        <MagnifyingGlassIcon className="h-6 pr-1 lg:h-6 lg:pr-4 " />
       </PopoverTrigger>
-      <PopoverContent className="mt-7 w-[100vw] bg-primary bg-opacity-75 backdrop-blur-sm">
+      <PopoverContent className="mt-5 w-[100vw] rounded-none bg-primary bg-opacity-75 backdrop-blur-sm">
         <div>
           <form onSubmit={onSubmit} className="flex w-full items-center lg:w-80 xl:w-full">
             <div className="flex h-full items-center p-4">
-              <MagnifyingGlassIcon className="h-4 " />
+              <MagnifyingGlassIcon className="h-6" color="rgb(115 115 115)" />
             </div>
             <input
               key={searchParams?.get('q')}
               type="text"
               name="search"
-              placeholder="Search for products..."
+              placeholder="Search something..."
               defaultValue={searchParams?.get('q') || ''}
-              className="text-md w-full bg-transparent font-sans text-black outline-none placeholder:text-neutral-500"
+              className="text-md w-full bg-transparent font-serif text-black outline-none placeholder:text-neutral-500"
             />
             <div>
               <PopoverClose asChild>
                 <div className="flex h-full items-center p-4">
-                  <XMarkIcon className="h-4 cursor-pointer" />
+                  <XMarkIcon className="h-6 cursor-pointer" color="rgb(115 115 115)" />
                 </div>
               </PopoverClose>
             </div>
