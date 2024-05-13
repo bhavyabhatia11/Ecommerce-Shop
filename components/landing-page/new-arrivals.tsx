@@ -17,27 +17,19 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
 
   return (
     <div className="relative items-center justify-center bg-primary pb-12 lg:pb-24">
-      <Ring
-        className="absolute right-0 top-0 block translate-x-1/2 transform opacity-40"
-        height={'60%'}
-        width={'60%'}
-        color="#c4c4c4"
-      />
-      <div className="mx-auto mt-8 flex max-w-screen-2xl px-4 lg:mt-24">
-        <div className="absolute right-[10%] flex w-[35%] flex-col lg:relative lg:right-0">
+      <div className="mx-auto mt-8 flex max-w-screen-2xl flex-col gap-8 px-4 lg:mt-24 lg:flex-row lg:gap-0">
+        <div className="relative flex w-[35%] flex-col lg:right-0 ">
           <Ring
-            className="absolute left-[30%] top-0 mx-auto -mb-20 hidden opacity-20 lg:block"
-            height={'100%'}
-            width={'120%'}
+            className="absolute left-[30%] top-[2%] mx-auto -mb-20 hidden opacity-20 lg:block"
             color="#c4c4c4"
           />
           <Ring
-            className="absolute left-[30%] top-0 mx-auto -mb-20 hidden opacity-80 lg:block"
-            height={'60%'}
-            width={'80%'}
+            className="absolute left-[30%] top-[20%] mx-auto -mb-20 hidden opacity-80 lg:block"
+            height={'360px'}
+            width={'360px'}
             color="#c4c4c4"
           />
-          <div className="relative h-[220px] w-[160px] overflow-hidden lg:h-[476px] lg:w-[343px]">
+          <div className="relative h-[328px] w-[212px] overflow-hidden lg:h-[647px] lg:w-[393px]">
             <Image
               className="object-cover"
               fill
@@ -45,7 +37,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
               src={data.images[0]?.image.url as string}
             />
           </div>
-          <div className="absolute left-[70%] top-[35%] h-[108px] w-[81px] overflow-hidden rounded-full lg:left-[50%] lg:h-[234px] lg:w-[175px]">
+          <div className="absolute left-[180px] top-[200px] h-[191px] w-[154px] overflow-hidden rounded-full lg:left-[200px] lg:top-[460px] lg:h-[446px] lg:w-[360px] ">
             <Image
               className="object-cover"
               fill
@@ -54,14 +46,17 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
             />
           </div>
         </div>
-        <div className="flex w-full flex-col gap-12 lg:w-[65%] lg:gap-20 ">
-          <div className="z-1 bottom-0 flex w-1/2 text-2xl text-secondary lg:-ml-20 lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
+        <div className="flex w-full flex-col gap-8 lg:w-[65%] lg:gap-12 lg:gap-20 ">
+          <div className="z-1 bottom-0 flex w-1/2 text-xl text-secondary lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
             {data.title}
           </div>
           <div>
-            <Link href={`/collections/${data.handle}`} className="mb-8 flex justify-end">
+            <Link
+              href={`/collections/${data.handle}`}
+              className="mb-8 flex hidden justify-end lg:block"
+            >
               <Button variant="secondary" className="mt-8 gap-2 font-serif lg:mt-12">
-                Shop all
+                See all
                 <MoveRightIcon />
               </Button>
             </Link>
@@ -69,7 +64,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
               {products?.slice(0, 2).map((product) => (
                 <li
                   key={product.handle}
-                  className="mb-24 aspect-[4/5] max-h-[386px] min-h-[195px] w-[50%] min-w-[163px] max-w-[278px]  lg:w-[25%]"
+                  className="mb-20 aspect-[4/5] max-h-[386px] min-h-[195px] min-w-[163px] max-w-[278px] lg:mb-28"
                 >
                   <Link className="relative" href={`/product/${product.handle}`}>
                     <GridTileImage
@@ -96,7 +91,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
               {products?.slice(0, 2).map((product) => (
                 <li
                   key={product.handle}
-                  className="mb-24 aspect-[4/5] max-h-[386px] min-h-[195px] w-[50%] min-w-[163px] max-w-[278px]  lg:w-[25%]"
+                  className="mb-12 aspect-[4/5] max-h-[386px] min-h-[195px] min-w-[163px] max-w-[278px] lg:mb-28"
                 >
                   <Link className="relative" href={`/product/${product.handle}`}>
                     <GridTileImage
@@ -121,6 +116,13 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
             </ul>
           </div>
         </div>
+
+        <Link href={`/collections/${data.handle}`} className="block lg:hidden">
+          <Button variant="secondary" className="mt-0 w-full gap-2 font-serif lg:mt-12 lg:w-auto">
+            See all
+            <MoveRightIcon />
+          </Button>
+        </Link>
       </div>
     </div>
   );

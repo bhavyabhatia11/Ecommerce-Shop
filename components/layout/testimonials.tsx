@@ -21,8 +21,8 @@ export default function Testimonials({ testimonials }: { testimonials: any[] }) 
       <CarouselContent className="item-center m-0 h-full w-[100vw] items-center gap-0 p-0">
         {testimonials.map((testimonial, index) => (
           <CarouselItem className="h-full items-center pl-0 md:basis-1/3" key={index}>
-            <div className="flex h-full flex-col items-center justify-center p-12 text-center md:border-r">
-              <div className="text-xl text-neutral-200">{testimonial.description}</div>
+            <div className="flex h-full flex-col items-center justify-center p-12 text-center lg:border-r">
+              <div className="text-3xl text-neutral-200">{testimonial.description}</div>
               <div className="py-4 text-sm text-neutral-400">{testimonial.name}</div>
             </div>
           </CarouselItem>

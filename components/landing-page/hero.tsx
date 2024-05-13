@@ -12,6 +12,8 @@ export const Hero = ({ data }: { data: Section }) => {
 
   if (!data) return null;
 
+  console.log('Data', data);
+
   return (
     <div className="relative items-center justify-center">
       <Suspense
@@ -44,7 +46,7 @@ export const Hero = ({ data }: { data: Section }) => {
         </Carousel>
       </Suspense>
 
-      <div className="z-1 absolute bottom-0 my-20 flex w-full items-center justify-center gap-4 text-xl text-primary lg:my-40 lg:text-5xl">
+      <div className="absolute bottom-0 z-10 my-20 flex w-full items-center justify-center gap-4 text-xl text-primary lg:my-40 lg:text-5xl">
         {data.title}
       </div>
     </div>

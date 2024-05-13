@@ -55,7 +55,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Libre Caslon Display', 'serif'],
-        serif: ['Courier Prime', 'monospace']
+        serif: ['var(--font-courier_prime)', 'mono space']
       },
       fontWeight: {
         medium: 400,

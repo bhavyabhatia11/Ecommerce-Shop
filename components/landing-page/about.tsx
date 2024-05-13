@@ -9,7 +9,7 @@ export const About = ({ data }: { data: Section }) => {
   if (!data) return null;
 
   return (
-    <div className="relative items-center justify-center bg-primary pb-12 lg:pb-24">
+    <div className="relative items-center justify-center bg-primary pb-12 lg:pb-40">
       <Ring
         className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 transform opacity-40"
         height={'80%'}
@@ -56,7 +56,7 @@ export const About = ({ data }: { data: Section }) => {
               src={data.images[1]?.image.url as string}
             />
           </div>
-          <div className="absolute bottom-0 left-[70%] top-[70%] h-[108px] w-[81px] overflow-hidden lg:left-[50%] lg:h-[234px] lg:w-[175px]">
+          <div className="absolute bottom-0 left-[70%] top-[70%] h-[108px] w-[81px] overflow-hidden lg:left-[250px] lg:top-[340px] lg:h-[234px] lg:w-[175px]">
             <Image
               className="object-cover"
               fill

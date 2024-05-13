@@ -1,7 +1,7 @@
 import { Toaster } from '@/components/ui/toaster';
+import { Courier_Prime, Salsa } from '@next/font/google';
 import Footer from 'components/layout/footer';
 import Navbar from 'components/layout/navbar';
-import { GeistSans } from 'geist/font';
 import { ensureStartsWith } from 'lib/utils';
 import { ReactNode, Suspense } from 'react';
 import './globals.css';
@@ -33,10 +33,22 @@ export const metadata = {
     })
 };
 
+const courier_prime = Courier_Prime({
+  variable: '--font-courier_prime',
+  weight: ['400', '700'],
+  subsets: ['latin']
+});
+
+const salsa = Salsa({
+  variable: '--font-salsa',
+  weight: ['400'],
+  subsets: ['latin']
+});
+
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={GeistSans.variable}>
-      <body className="bg-primary">
+    <html lang="en">
+      <body className={`${courier_prime.variable} ${salsa.variable} bg-primary`}>
         <Navbar />
         <Suspense>
           <main>{children}</main>

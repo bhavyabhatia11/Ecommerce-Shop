@@ -4,6 +4,7 @@ import { About } from './about';
 import { BestSellers } from './best-sellers';
 import { Hero } from './hero';
 import { NewArrivals } from './new-arrivals';
+import { Showcase } from './showcase';
 
 export const LandingPage = async () => {
   const sections = await getMetaObjects('home_page');
@@ -21,7 +22,7 @@ export const LandingPage = async () => {
       case 'new_arrivals':
         return <NewArrivals data={section} key={section.type} />;
       case 'showcase':
-        break;
+        return <Showcase data={section} key={section.type} />;
       default:
         return null;
     }

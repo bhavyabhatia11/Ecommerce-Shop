@@ -36,7 +36,7 @@ export const BestSellers = async ({ data }: { data: Section }) => {
           {products?.map((product) => (
             <li
               key={product.handle}
-              className="mb-24 aspect-[4/5] max-h-[386px] min-h-[195px] w-1/2 min-w-[163px] max-w-[278px] flex-none lg:w-1/4"
+              className="mb-14 aspect-[4/5] max-h-[386px] min-h-[195px] w-1/2 min-w-[163px] max-w-[278px] flex-none lg:mb-24 lg:w-1/4"
             >
               <Link className="relative" href={`/product/${product.handle}`}>
                 <GridTileImage
@@ -63,7 +63,7 @@ export const BestSellers = async ({ data }: { data: Section }) => {
         <Link href={`/collections/${data.handle}`} className="block lg:hidden">
           <Button
             variant="default"
-            className="mt-8 w-full gap-2 font-serif text-secondary lg:mt-12 lg:w-auto"
+            className="mt-0 w-full gap-2 font-serif text-secondary lg:mt-12 lg:w-auto"
           >
             Shop all
             <MoveRightIcon />

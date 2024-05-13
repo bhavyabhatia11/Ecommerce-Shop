@@ -15,7 +15,7 @@ export default async function Footer() {
 
   return (
     <footer className="bg-dark-green text-sm text-neutral-400">
-      <div className="mx-[1px] flex w-full flex-col gap-6 overflow-hidden border-t border-neutral-700 pb-8 pt-16 text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
+      <div className="flex w-full flex-col gap-6 overflow-hidden border-t border-neutral-700 pb-8 pt-16 text-sm md:flex-row md:gap-12 md:px-4 lg:mx-[1px] min-[1320px]:px-0">
         <Testimonials testimonials={testimonials} />
       </div>
       <div className="flex w-full flex-row items-center justify-center gap-4 px-0 lg:px-16">
