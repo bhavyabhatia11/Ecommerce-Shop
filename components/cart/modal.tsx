@@ -56,7 +56,7 @@ export default function CartModal({
   const closeCart = () => setIsOpen(false);
 
   const handleGiftingNote = () => {
-    if (content.length > 0) {
+    if (content.length > 0 && giftWrap) {
       addGiftNote(content);
     }
   };
