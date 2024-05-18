@@ -4,6 +4,7 @@ import { About } from './about';
 import { BestSellers } from './best-sellers';
 import { Hero } from './hero';
 import { NewArrivals } from './new-arrivals';
+import { PopUp } from './pop-up';
 import { Showcase } from './showcase';
 
 export const LandingPage = async () => {
@@ -23,6 +24,8 @@ export const LandingPage = async () => {
         return <NewArrivals data={section} key={section.type} />;
       case 'showcase':
         return <Showcase data={section} key={section.type} />;
+      case 'pop_up':
+        return <PopUp data={section} key={section.type} />;
       default:
         return null;
     }

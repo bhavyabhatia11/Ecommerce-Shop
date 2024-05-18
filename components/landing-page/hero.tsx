@@ -12,8 +12,6 @@ export const Hero = ({ data }: { data: Section }) => {
 
   if (!data) return null;
 
-  console.log('Data', data);
-
   return (
     <div className="relative items-center justify-center">
       <Suspense

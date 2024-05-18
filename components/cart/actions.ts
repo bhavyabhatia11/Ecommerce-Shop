@@ -13,9 +13,20 @@ import {
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
-export async function addItem(prevState: any, selectedVariantId: string | undefined) {
+export async function addItem(
+  prevState: any,
+  payload: { selectedVariantId: string | undefined; giftWrap?: boolean }
+) {
+  const { selectedVariantId, giftWrap } = payload;
+
   let cartId = cookies().get('cartId')?.value;
   let cart;
+
+  if (giftWrap) {
+    cookies().set('giftWrap', 'true');
+  } else {
+    cookies().set('giftWrap', 'false');
+  }
 
   if (cartId) {
     cart = await getCart(cartId);
@@ -85,8 +96,6 @@ export async function updateItemQuantity(
       }
     ]);
     revalidateTag(TAGS.cart);
-
-    await addGiftNoteToCart(cartId, 'A gifting note!!');
   } catch (e) {
     return 'Error updating item quantity';
   }
@@ -101,5 +110,21 @@ export async function addCustomer(email: string) {
     });
   } catch (e) {
     return 'Error updating item quantity';
+  }
+}
+
+export async function addGiftNote(note: string) {
+  const cartId = cookies().get('cartId')?.value;
+
+  if (!cartId) {
+    return 'Missing cart ID';
+  }
+
+  if (note.length > 0) {
+    try {
+      await addGiftNoteToCart(cartId, note);
+    } catch (e) {
+      return 'Error sending gift note';
+    }
   }
 }

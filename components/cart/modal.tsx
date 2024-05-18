@@ -1,6 +1,6 @@
 'use client';
-
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Sheet,
   SheetClose,
@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet';
+import { Textarea } from '@/components/ui/textarea';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import Price from 'components/price';
 import { DEFAULT_OPTION } from 'lib/constants';
@@ -18,7 +19,8 @@ import { X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { addGiftNote } from './actions';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
@@ -27,11 +29,37 @@ type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
-export default function CartModal({ cart }: { cart: Cart | undefined }) {
+export default function CartModal({
+  cart,
+  shouldGiftWrap
+}: {
+  cart: Cart | undefined;
+  shouldGiftWrap: boolean;
+}) {
   const router = useRouter();
+
   const [isOpen, setIsOpen] = useState(false);
+  const [giftWrap, setGiftWrap] = useState(shouldGiftWrap);
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    setGiftWrap(shouldGiftWrap);
+  }, [shouldGiftWrap]);
+
+  const setFormattedContent = useCallback(
+    (text: string) => {
+      setContent(text.slice(0, 250));
+    },
+    [setContent]
+  );
   const quantityRef = useRef(cart?.totalQuantity);
   const closeCart = () => setIsOpen(false);
+
+  const handleGiftingNote = () => {
+    if (content.length > 0) {
+      addGiftNote(content);
+    }
+  };
 
   useEffect(() => {
     // Open cart modal when quantity changes.
@@ -165,6 +193,33 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                 })}
               </ul>
               <div className="py-4 font-serif text-sm">
+                <div className="mb-6 flex flex-col gap-4 border-b py-4 ">
+                  <div className="flex flex-row gap-2">
+                    <Checkbox
+                      id={'gift-wrap'}
+                      className="border-neutral-500 bg-white"
+                      onClick={() => {
+                        setGiftWrap(!giftWrap);
+                      }}
+                      checked={giftWrap}
+                    />
+                    <p>Gift wrap for free!</p>
+                  </div>
+
+                  {giftWrap && (
+                    <div>
+                      <Textarea
+                        placeholder="Type your message here."
+                        onChange={(event) => setFormattedContent(event.target.value)}
+                        value={content}
+                      />
+                      <p className="flex w-full justify-end">
+                        {' '}
+                        {content.length}/{250}{' '}
+                      </p>
+                    </div>
+                  )}
+                </div>
                 <div className="mb-6 flex items-center justify-between border-b pb-1 ">
                   <p>Taxes</p>
                   <Price
@@ -190,6 +245,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                 className="mb-4 w-full py-8 text-center font-serif text-xl text-white "
                 variant="secondary"
                 size="lg"
+                onClick={handleGiftingNote}
               >
                 <a href={cart.checkoutUrl}>Proceed to Checkout</a>
               </Button>

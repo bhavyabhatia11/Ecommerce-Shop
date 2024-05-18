@@ -70,6 +70,29 @@ function SubmitButton({
   );
 }
 
+function GiftWrapButton({}: {}) {
+  const { pending } = useFormStatus();
+
+  return (
+    <div className="flex gap-4 rounded-lg border px-5 py-4">
+      <div className="w-3/4 text-3xl text-[#95593F]">Wrap it for free!</div>
+      <Button
+        onClick={(e: React.FormEvent<HTMLButtonElement>) => {
+          if (pending) e.preventDefault();
+        }}
+        aria-label="Lets wrap this!"
+        aria-disabled={pending}
+        className={clsx(buttonClasses, 'w-[30%] p-3')}
+        variant="beige-dark"
+      >
+        <div className="text-sm font-bold">
+          {pending ? <LoadingDots className="mb-3 bg-white " /> : 'Lets wrap this!'}
+        </div>
+      </Button>
+    </div>
+  );
+}
+
 export async function AddToCart({
   variants,
   availableForSale
@@ -86,7 +109,8 @@ export async function AddToCart({
     )
   );
   const selectedVariantId = variant?.id || defaultVariantId;
-  const actionWithVariant = formAction.bind(null, selectedVariantId);
+  const actionWithVariant = formAction.bind(null, { selectedVariantId });
+  const actionWithVariantAndGiftWrap = formAction.bind(null, { selectedVariantId, giftWrap: true });
   const router = useRouter();
 
   const generateBuyNowLink = () => {
@@ -97,24 +121,31 @@ export async function AddToCart({
   };
 
   return (
-    <div className="flex flex-col justify-center gap-4 lg:flex-row">
-      {availableForSale && selectedVariantId && (
-        <Button
-          onClick={generateBuyNowLink}
-          aria-label="Add to cart"
-          aria-disabled={!selectedVariantId || !availableForSale}
-          className={clsx(buttonClasses, {
-            disabledClasses: !selectedVariantId
-          })}
-          variant="secondary"
-          size="lg"
-        >
-          Buy now
-        </Button>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col justify-center gap-4 lg:flex-row">
+        {availableForSale && selectedVariantId && (
+          <Button
+            onClick={generateBuyNowLink}
+            aria-label="Add to cart"
+            aria-disabled={!selectedVariantId || !availableForSale}
+            className={clsx(buttonClasses, {
+              disabledClasses: !selectedVariantId
+            })}
+            variant="secondary"
+            size="lg"
+          >
+            Buy now
+          </Button>
+        )}
+        <form action={actionWithVariant} className="w-full">
+          <SubmitButton availableForSale={availableForSale} selectedVariantId={selectedVariantId} />
+        </form>
+      </div>
+      {availableForSale && (
+        <form action={actionWithVariantAndGiftWrap} className="w-full">
+          <GiftWrapButton />
+        </form>
       )}
-      <form action={actionWithVariant} className="w-full">
-        <SubmitButton availableForSale={availableForSale} selectedVariantId={selectedVariantId} />
-      </form>
     </div>
   );
 }
