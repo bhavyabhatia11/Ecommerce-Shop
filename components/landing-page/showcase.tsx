@@ -59,33 +59,35 @@ export const Showcase = async ({ data }: { data: Section }) => {
               </Link>
             </div>
           </div>
-          <ul className="no-scrollbar mb-8 flex w-full gap-4 overflow-x-auto overflow-y-hidden pt-1 lg:mb-0 lg:ml-[431px] lg:gap-12">
-            {products?.map((product) => (
-              <li
-                key={product.handle}
-                className="mb-14 aspect-[4/5] max-h-[386px] min-h-[195px] w-1/2 min-w-[163px] max-w-[278px] flex-none lg:mb-24 lg:w-1/4"
-              >
-                <Link className="relative" href={`/product/${product.handle}`}>
-                  <GridTileImage
-                    alt={product.title}
-                    label={{
-                      title: product.title,
-                      amount: product.priceRange.maxVariantPrice.amount,
-                      currencyCode: product.priceRange.maxVariantPrice.currencyCode
-                    }}
-                    src={product.featuredImage?.url}
-                    sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+          <div className="overflow-x-hidden">
+            <ul className="no-scrollbar mb-8 flex w-full gap-4 overflow-x-auto overflow-y-hidden pt-1 lg:mb-0 lg:ml-[431px] lg:gap-12">
+              {products?.map((product) => (
+                <li
+                  key={product.handle}
+                  className="mb-14 aspect-[4/5] max-h-[386px] min-h-[195px] w-1/2 min-w-[163px] max-w-[278px] flex-none lg:mb-24 lg:w-1/4"
+                >
+                  <Link className="relative" href={`/product/${product.handle}`}>
+                    <GridTileImage
+                      alt={product.title}
+                      label={{
+                        title: product.title,
+                        amount: product.priceRange.maxVariantPrice.amount,
+                        currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                      }}
+                      src={product.featuredImage?.url}
+                      sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  </Link>
+                  <Label
+                    title={product.title}
+                    amount={product.priceRange.maxVariantPrice.amount}
+                    currencyCode={product.priceRange.maxVariantPrice.currencyCode}
+                    position="bottom"
                   />
-                </Link>
-                <Label
-                  title={product.title}
-                  amount={product.priceRange.maxVariantPrice.amount}
-                  currencyCode={product.priceRange.maxVariantPrice.currencyCode}
-                  position="bottom"
-                />
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="absolute right-0 top-0 flex flex-col">
           <div className="relative h-[220px] w-[160px] overflow-hidden rounded-b-full lg:h-[520px] lg:w-[320px]">
