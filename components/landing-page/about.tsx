@@ -16,8 +16,8 @@ export const About = ({ data }: { data: Section }) => {
         width={'80%'}
         color="#c4c4c4"
       />
-      <div className="mx-auto mt-8 flex max-w-screen-2xl gap-12 px-4 lg:mt-24">
-        <div className="flex w-full flex-col gap-12 lg:mt-20 lg:w-[65%] lg:gap-20">
+      <div className="mx-auto mt-8 flex max-w-screen-2xl gap-20 px-4 lg:mt-24">
+        <div className="flex w-full flex-col gap-12 lg:mt-20 lg:w-[65%] lg:gap-12">
           <div className="z-1 bottom-0 flex w-1/2 text-2xl text-secondary lg:mx-52 lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
             {data.title}
           </div>
@@ -47,7 +47,7 @@ export const About = ({ data }: { data: Section }) => {
             </div>
           </div>
         </div>
-        <div className="absolute right-[10%] flex w-[35%] flex-col lg:relative lg:right-0">
+        <div className="align-center absolute right-[10%] flex w-[35%] flex-col lg:relative lg:right-0">
           <div className="relative h-[220px] w-[160px] overflow-hidden rounded-full lg:h-[476px] lg:w-[343px]">
             <Image
               className="object-cover"

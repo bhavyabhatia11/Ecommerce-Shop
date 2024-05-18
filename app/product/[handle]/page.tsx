@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { GridTileImage } from 'components/grid/tile';
+import JewelleryCare from 'components/icons/jewellery-care';
 import Label from 'components/label';
 import { Gallery } from 'components/product/gallery';
 import { ProductDescription } from 'components/product/product-description';
@@ -56,8 +57,8 @@ export async function generateMetadata({
 export default async function ProductPage({ params }: { params: { handle: string } }) {
   const product = await getProduct(params.handle);
   const policies = await getMetaObjects('policies');
-  const shippingPolicy = policies.find(
-    (policy: { type: string }) => policy.type === 'shipping-and-returns'
+  const jewelleryPolicy = policies.find(
+    (policy: { type: string }) => policy.type === 'jewellery_care'
   );
 
   if (!product) return notFound();
@@ -110,7 +111,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         </div>
 
         {product?.info?.value && (
-          <div className="font-400 item-center my-6 text-lg leading-tight lg:my-12 lg:text-6xl">
+          <div className="item-center my-6 text-lg leading-[3.2rem] lg:my-12 lg:text-[36px]">
             {product.info.value}
           </div>
         )}
@@ -120,7 +121,7 @@ export default async function ProductPage({ params }: { params: { handle: string
             <div className="mb-4 text-lg lg:mb-0">DESCRIPTION AND DETAILS</div>
             <div className="flex w-full flex-col gap-2 lg:w-[60%]">
               {JSON.parse(product.product_details.value).map((detail: string, index: number) => (
-                <div className="border-b pb-2" key={index}>
+                <div className="border-b border-beige-light pb-4" key={index}>
                   {detail}
                 </div>
               ))}
@@ -129,7 +130,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         )}
 
         {product.images.length > 2 && (
-          <div className="my-4 flex flex-col gap-4 lg:relative lg:left-1/2 lg:my-20 lg:w-screen lg:-translate-x-1/2 lg:transform lg:flex-row lg:gap-6">
+          <div className="my-4 flex flex-col gap-4 lg:relative lg:left-1/2 lg:mt-20 lg:w-screen lg:-translate-x-1/2 lg:transform lg:flex-row lg:gap-6">
             {product.images.slice(-2).map(
               (
                 image,
@@ -154,14 +155,18 @@ export default async function ProductPage({ params }: { params: { handle: string
           </div>
         )}
 
-        <div className="flex justify-end border-t py-8 lg:py-40">
+        <div className="relative left-1/2 flex w-[100vw] w-screen -translate-x-1/2 transform justify-center bg-beige-lighter px-6 lg:mb-16 lg:mt-8 lg:pb-12 lg:pt-4">
+          <JewelleryCare />
+        </div>
+
+        <div className="flex justify-end py-8 lg:mb-12 lg:py-0">
           <div className="flex flex-col gap-8 lg:w-1/2 lg:gap-16">
-            <div className="text-lg lg:text-6xl"> {shippingPolicy.name}</div>
+            <div className="text-lg lg:text-5xl"> {jewelleryPolicy.name}</div>
             <div>
               {' '}
               <Prose
                 className="flex flex-col gap-4 font-serif text-sm tracking-wider text-neutral-500 lg:gap-8 lg:text-base"
-                html={toHTML(shippingPolicy.description) as string}
+                html={toHTML(jewelleryPolicy.description) as string}
               />{' '}
             </div>
           </div>
@@ -181,12 +186,15 @@ async function RelatedProducts({ id }: { id: string }) {
   if (!relatedProducts.length) return null;
 
   return (
-    <div className="border-t pb-20 pt-8">
+    <div className="border-t pb-20 pt-8 lg:pt-12">
       <h2 className="mb-4 text-2xl lg:text-4xl">Related Products</h2>
 
       <ul className="no-scrollbar flex w-full gap-4 overflow-x-auto pt-1 lg:gap-12">
         {relatedProducts.map((product) => (
-          <li key={product.handle} className="aspect-[3/4] w-1/2 flex-none lg:w-1/4 ">
+          <li
+            key={product.handle}
+            className="mb-16 aspect-[4/5] max-h-[386px] min-h-[195px] w-1/2 min-w-[163px] max-w-[278px] flex-none lg:mb-24 lg:w-1/4"
+          >
             <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
               <GridTileImage
                 alt={product.title}

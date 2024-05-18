@@ -8,7 +8,7 @@ import { VariantSelector } from './variant-selector';
 export function ProductDescription({ product }: { product: Product }) {
   return (
     <>
-      <div className="mb-6 flex flex-col items-start border-b pt-8 text-left lg:mb-10 lg:pt-0">
+      <div className="mb-6 flex flex-col items-start pt-8 text-left lg:mb-6 lg:pt-0">
         <h1 className="mb-2 font-sans text-2xl font-medium lg:mb-10 lg:text-5xl">
           {product.title}
         </h1>
@@ -21,7 +21,7 @@ export function ProductDescription({ product }: { product: Product }) {
         </div>
         {product.descriptionHtml ? (
           <Prose
-            className="!mx-0 mb-4 text-left font-serif text-sm tracking-wider text-neutral-500 lg:mb-6"
+            className="!mx-0 mb-4 text-left font-serif text-sm text-neutral-500 lg:mb-6 lg:text-base"
             html={product.descriptionHtml}
           />
         ) : null}

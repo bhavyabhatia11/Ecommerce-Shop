@@ -14,10 +14,10 @@ export const BestSellers = async ({ data }: { data: Section }) => {
   });
 
   return (
-    <div className="relative items-center justify-center bg-dark-green lg:py-24 lg:pl-40">
-      <div className="flex flex-col gap-8 px-4 py-8 text-primary lg:gap-20 lg:px-0">
-        <div className="flex w-full justify-between pr-8">
-          <div>
+    <div className="relative items-center justify-center bg-dark-green lg:py-24">
+      <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 px-4 py-12 pb-16 text-primary lg:gap-12 lg:px-0 lg:pb-0 lg:pt-16">
+        <div className="flex w-full items-end justify-between">
+          <div className="lg:mb-12">
             <h2 className="text-2xl lg:mb-4 lg:text-5xl">{data.title}</h2>
             <h2 className="mb-4 font-serif text-sm lg:text-base">{data.subtitle}</h2>
           </div>
@@ -32,11 +32,11 @@ export const BestSellers = async ({ data }: { data: Section }) => {
           </Link>
         </div>
 
-        <ul className="no-scrollbar flex w-full gap-4 overflow-x-auto overflow-y-hidden pt-1 lg:gap-12">
+        <ul className="no-scrollbar flex w-full gap-4 overflow-x-auto overflow-y-hidden pt-1 lg:gap-16">
           {products?.map((product) => (
             <li
               key={product.handle}
-              className="mb-14 aspect-[4/5] max-h-[386px] min-h-[195px] w-1/2 min-w-[163px] max-w-[278px] flex-none lg:mb-24 lg:w-1/4"
+              className="mb-16 aspect-[4/5] max-h-[386px] min-h-[195px] w-1/2 min-w-[163px] max-w-[278px] flex-none lg:mb-24 lg:w-1/4"
             >
               <Link className="relative" href={`/product/${product.handle}`}>
                 <GridTileImage

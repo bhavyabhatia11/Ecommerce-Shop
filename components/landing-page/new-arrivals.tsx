@@ -37,7 +37,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
               src={data.images[0]?.image.url as string}
             />
           </div>
-          <div className="absolute left-[180px] top-[200px] h-[191px] w-[154px] overflow-hidden rounded-full lg:left-[200px] lg:top-[460px] lg:h-[446px] lg:w-[360px] ">
+          <div className="absolute left-[180px] top-[200px] h-[220px] w-[174px] overflow-hidden rounded-full lg:left-[200px] lg:top-[460px] lg:h-[446px] lg:w-[360px] ">
             <Image
               className="object-cover"
               fill
@@ -47,20 +47,20 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
           </div>
         </div>
         <div className="flex w-full flex-col gap-8 lg:w-[65%] lg:gap-12 lg:gap-20 ">
-          <div className="z-1 bottom-0 flex w-1/2 text-xl text-secondary lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
+          <div className="z-1 bottom-0 flex w-[45%] text-xl text-secondary lg:w-1/2 lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
             {data.title}
           </div>
           <div>
             <Link
               href={`/collections/${data.handle}`}
-              className="mb-8 flex hidden justify-end lg:block"
+              className="mb-8 flex hidden justify-end lg:flex"
             >
               <Button variant="secondary" className="mt-8 gap-2 font-serif lg:mt-12">
                 See all
                 <MoveRightIcon />
               </Button>
             </Link>
-            <ul className="no-scrollbar flex justify-end gap-8">
+            <ul className="no-scrollbar flex justify-end gap-4 lg:gap-8">
               {products?.slice(0, 2).map((product) => (
                 <li
                   key={product.handle}
@@ -87,7 +87,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
                 </li>
               ))}
             </ul>
-            <ul className="no-scrollbar flex justify-end gap-8">
+            <ul className="no-scrollbar flex justify-end gap-4 lg:gap-8">
               {products?.slice(0, 2).map((product) => (
                 <li
                   key={product.handle}

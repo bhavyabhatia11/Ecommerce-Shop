@@ -74,7 +74,7 @@ function GiftWrapButton({}: {}) {
   const { pending } = useFormStatus();
 
   return (
-    <div className="flex gap-4 rounded-lg border px-5 py-4">
+    <div className="flex gap-4 rounded-lg border bg-white px-5 py-5">
       <div className="w-3/4 text-3xl text-[#95593F]">Wrap it for free!</div>
       <Button
         onClick={(e: React.FormEvent<HTMLButtonElement>) => {
@@ -83,7 +83,7 @@ function GiftWrapButton({}: {}) {
         aria-label="Lets wrap this!"
         aria-disabled={pending}
         className={clsx(buttonClasses, 'w-[30%] p-3')}
-        variant="beige-dark"
+        variant="beige-lighter"
       >
         <div className="text-sm font-bold">
           {pending ? <LoadingDots className="mb-3 bg-white " /> : 'Lets wrap this!'}

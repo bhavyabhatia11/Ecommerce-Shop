@@ -14,7 +14,7 @@ export default async function Navbar() {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between bg-secondary bg-opacity-100 p-4 font-serif text-white lg:px-6">
+      <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between border-b border-slate-600 bg-secondary bg-opacity-100 p-4 font-serif text-white lg:px-6">
         <div className="flex items-center">
           <Suspense fallback={<Bars3Icon className="h-4 lg:h-5" />}>
             <HamburgerMenu menu={menu} />

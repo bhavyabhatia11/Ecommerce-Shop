@@ -29,7 +29,7 @@ export const Hero = ({ data }: { data: Section }) => {
           <CarouselContent className="item-center m-0 items-center gap-0 p-0">
             {data.images.map((item: any, index) => (
               <CarouselItem className="h-full items-center pl-0" key={index}>
-                <div className="relative aspect-[3/4] max-h-[80vh] w-full overflow-hidden lg:aspect-[4/3]">
+                <div className="relative aspect-[3/4] max-h-[94vh] w-full overflow-hidden lg:aspect-[4/3]">
                   <Image
                     className="object-cover"
                     fill
@@ -40,11 +40,11 @@ export const Hero = ({ data }: { data: Section }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselDots className="bottom-0 my-12 lg:my-20" />
+          <CarouselDots className="bottom-0 my-8 lg:my-12" />
         </Carousel>
       </Suspense>
 
-      <div className="absolute bottom-0 z-10 my-20 flex w-full items-center justify-center gap-4 text-xl text-primary lg:my-40 lg:text-5xl">
+      <div className="absolute bottom-0 z-10 my-20 flex w-full items-center justify-center gap-4 px-4 text-center text-3xl text-primary lg:my-32 lg:px-0 lg:text-5xl">
         {data.title}
       </div>
     </div>

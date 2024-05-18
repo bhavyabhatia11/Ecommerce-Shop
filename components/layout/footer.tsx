@@ -14,8 +14,8 @@ export default async function Footer() {
   const testimonials = await getMetaObjects('testimonial');
 
   return (
-    <footer className="bg-dark-green text-sm text-neutral-400">
-      <div className="flex w-full flex-col gap-6 overflow-hidden border-t border-neutral-700 pb-8 pt-16 text-sm md:flex-row md:gap-12 md:px-4 lg:mx-[1px] min-[1320px]:px-0">
+    <footer className="bg-dark-green text-sm text-neutral-400 ">
+      <div className="flex w-full flex-col gap-6  overflow-hidden border-t border-neutral-700 pt-12 text-sm md:flex-row md:gap-12 md:px-4 lg:mx-[1px] lg:pb-8 lg:pt-16 min-[1320px]:px-0">
         <Testimonials testimonials={testimonials} />
       </div>
       <div className="flex w-full flex-row items-center justify-center gap-4 px-0 lg:px-16">
@@ -27,12 +27,14 @@ export default async function Footer() {
           <hr className="border-t" />
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-12 text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
-        <div className="flex max-w-[208px] flex-col gap-6">
+      <div className="mx-auto flex w-full max-w-7xl max-w-screen-2xl flex-col gap-6 px-6 py-12 font-serif text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
+        <div className="flex flex-col gap-6">
           <Link className="flex items-center gap-2 text-black dark:text-white md:pt-1" href="/">
             <HeaderLogoIcon width={'204'} height={'32'} />
           </Link>
-          <div>Mahaveer Bhawan, Chaura Rasta Rd, near Shop no. 152, 302003 Jaipur RJ, India</div>
+          <div className="w-[300px]">
+            Mahaveer Bhawan, Chaura Rasta Rd, near Shop no. 152, 302003 Jaipur RJ, India
+          </div>
           <div>
             <a href="mailto:somethingsimple0404@gmail.com">somethingsimple0404@gmail.com</a>
           </div>

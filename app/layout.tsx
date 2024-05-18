@@ -1,5 +1,11 @@
 import { Toaster } from '@/components/ui/toaster';
-import { Courier_Prime, Salsa } from '@next/font/google';
+import {
+  Bodoni_Moda,
+  Courier_Prime,
+  IBM_Plex_Mono,
+  Libre_Caslon_Display,
+  Playfair_Display
+} from '@next/font/google';
 import Footer from 'components/layout/footer';
 import Navbar from 'components/layout/navbar';
 import { ensureStartsWith } from 'lib/utils';
@@ -39,16 +45,36 @@ const courier_prime = Courier_Prime({
   subsets: ['latin']
 });
 
-const salsa = Salsa({
-  variable: '--font-salsa',
-  weight: ['400'],
+const ibm = IBM_Plex_Mono({
+  variable: '--font-ibm',
+  weight: ['200', '400', '700'],
+  subsets: ['latin']
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair-display',
+  display: 'swap'
+});
+
+const bodoni = Bodoni_Moda({
+  subsets: ['latin'],
+  variable: '--font-bodoni',
+  display: 'swap'
+});
+
+const libre = Libre_Caslon_Display({
+  variable: '--font-libre',
+  weight: '400',
   subsets: ['latin']
 });
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${courier_prime.variable} ${salsa.variable} bg-primary`}>
+      <body
+        className={`${courier_prime.variable} ${playfair.variable} ${bodoni.variable} ${libre.variable} ${ibm.variable} bg-primary font-sans`}
+      >
         <Navbar />
         <Suspense>
           <main>{children}</main>

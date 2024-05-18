@@ -251,7 +251,7 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
     return (
       <div
         className={cn(
-          'embla__dots z-1 absolute my-2 flex w-full items-center justify-center gap-4',
+          'embla__dots z-1 absolute my-2 flex w-full items-center justify-center gap-3',
           className
         )}
         {...props}
@@ -263,7 +263,9 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
               key={index}
               className={cn(
                 'embla__dot h-1 w-1 p-1',
-                index === selectedIndex ? 'bg-secondary' : 'border hover:bg-secondary'
+                index === selectedIndex
+                  ? 'bg-primary'
+                  : 'border-secondary bg-secondary hover:bg-primary'
               )}
               onClick={() => scrollTo(index)}
             />

@@ -21,9 +21,12 @@ const FooterMenuItem = ({ item }: { item: Menu }) => {
     <li>
       <Link
         href={`${baseUrl}/${item.path}`}
-        className={clsx('block p-2 text-lg hover:text-neutral-200 md:inline-block md:text-sm', {
-          'text-neutral-200': active
-        })}
+        className={clsx(
+          'block p-2 text-lg text-neutral-400 hover:text-neutral-200 md:inline-block md:text-sm',
+          {
+            'text-neutral-200': active
+          }
+        )}
       >
         {item.title}
       </Link>
@@ -36,7 +39,7 @@ export default function FooterMenu({ menu }: { menu: Menu[] }) {
 
   return (
     <nav>
-      <Grid className="grid-cols-1 !gap-0 !gap-x-20 gap-y-0 lg:grid-flow-col lg:grid-rows-6">
+      <Grid className="z-1 bottom-0 flex w-full grid-cols-1 items-center !gap-0 gap-4 !gap-x-16 gap-y-0 font-serif text-sm text-secondary lg:grid-flow-col lg:grid-rows-6 lg:text-base">
         {menu.map((item: Menu) => {
           return (
             <Grid.Item key={item.title} className="animate-fadeIn aspect-auto w-full">

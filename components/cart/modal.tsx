@@ -193,7 +193,7 @@ export default function CartModal({
                 })}
               </ul>
               <div className="py-4 font-serif text-sm">
-                <div className="mb-6 flex flex-col gap-4 border-b py-4 ">
+                <div className="mb-6 flex flex-col gap-4 py-4 ">
                   <div className="flex flex-row gap-2">
                     <Checkbox
                       id={'gift-wrap'}
@@ -213,7 +213,7 @@ export default function CartModal({
                         onChange={(event) => setFormattedContent(event.target.value)}
                         value={content}
                       />
-                      <p className="flex w-full justify-end">
+                      <p className="mt-2 flex w-full justify-start text-neutral-400">
                         {' '}
                         {content.length}/{250}{' '}
                       </p>
@@ -232,7 +232,7 @@ export default function CartModal({
                   <p>Shipping</p>
                   <p className="text-right">Calculated at checkout</p>
                 </div>
-                <div className="mb-6 flex items-center justify-between border-b pb-1 pt-1">
+                <div className="mb-6 flex items-center justify-between pb-1 pt-1">
                   <p>Total</p>
                   <Price
                     className="text-right text-sm font-bold text-black"
@@ -242,7 +242,7 @@ export default function CartModal({
                 </div>
               </div>
               <Button
-                className="mb-4 w-full py-8 text-center font-serif text-xl text-white "
+                className="mb-8 w-full py-8 text-center font-serif text-xl text-white "
                 variant="secondary"
                 size="lg"
                 onClick={handleGiftingNote}

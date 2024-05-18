@@ -31,7 +31,7 @@ export const PopUp = ({ data }: { data: Section }) => {
 
   return (
     <Dialog open={!popupViewed}>
-      <DialogContent className="min-w-[800px] max-w-[1200px] border-none p-0">
+      <DialogContent className="border-none p-0 lg:min-w-[800px] lg:max-w-[1200px]">
         <div className="relative items-center justify-center bg-beige-dark">
           {/* <Ring
             className="absolute left-0 bottom-0 translate-y-1/2 transform overflow-hidden opacity-40"
@@ -39,8 +39,8 @@ export const PopUp = ({ data }: { data: Section }) => {
             width={'80%'}
             color="#c4c4c4"
           /> */}
-          <div className="mx-8 my-12 flex max-w-screen-2xl gap-12 px-4 ">
-            <div className="absolute right-[10%] flex w-[35%] flex-col lg:relative lg:right-0">
+          <div className="my-12 flex max-w-screen-2xl gap-12 px-4 lg:mx-16 ">
+            <div className="absolute hidden w-[35%] flex-col lg:relative lg:right-0 lg:flex">
               <div className="relative h-[220px] w-[160px] overflow-hidden rounded-full lg:h-[546px] lg:w-[383px]">
                 <Image
                   className="object-cover"
@@ -49,7 +49,7 @@ export const PopUp = ({ data }: { data: Section }) => {
                   src={data.images[0]?.image.url as string}
                 />
               </div>
-              <div className="absolute bottom-0 top-[70%] h-[81px] w-[108px] overflow-hidden rounded-full lg:left-[250px] lg:top-[340px] lg:h-[136px] lg:w-[242px]">
+              <div className="absolute bottom-0 top-[70%] h-[81px] w-[108px] overflow-hidden rounded-full border border-neutral-300 lg:left-[250px] lg:top-[340px] lg:h-[136px] lg:w-[242px]">
                 <Image
                   className="object-cover"
                   fill
@@ -58,12 +58,12 @@ export const PopUp = ({ data }: { data: Section }) => {
                 />
               </div>
             </div>
-            <div className="mr-20 flex w-full flex-col gap-12 lg:mt-12 lg:w-[65%] lg:gap-20">
-              <div className="z-1 bottom-0 flex w-3/4 text-2xl text-secondary lg:gap-4 lg:text-5xl">
+            <div className="flex w-full flex-col gap-12 lg:mt-20 lg:w-[65%] lg:gap-20">
+              <div className="z-1 bottom-0 flex text-2xl text-secondary lg:ml-8 lg:w-3/4 lg:gap-4 lg:text-5xl">
                 {data.title}
               </div>
 
-              <div className="flex w-1/2 flex-col gap-12 self-end lg:flex-row lg:gap-20">
+              <div className="flex flex-col gap-12 self-end lg:w-3/4 lg:flex-row lg:gap-20">
                 <div>
                   <div className="z-1 bottom-0 flex w-full items-center gap-4 font-serif text-sm text-secondary lg:text-base">
                     {data.description}
@@ -72,7 +72,7 @@ export const PopUp = ({ data }: { data: Section }) => {
                     <Link href={`/collections/${data.handle}`}>
                       <Button
                         variant="secondary"
-                        className="mt-8 w-full gap-2 font-serif lg:mt-8 lg:w-full"
+                        className="mt-8 w-full gap-2 font-serif lg:mt-8 lg:w-1/2"
                       >
                         Buy Now
                       </Button>

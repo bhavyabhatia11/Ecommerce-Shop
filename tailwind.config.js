@@ -54,7 +54,7 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out'
       },
       fontFamily: {
-        sans: ['Libre Caslon Display', 'serif'],
+        sans: ['var(--font-playfair-display)', 'serif'],
         serif: ['var(--font-courier_prime)', 'mono space']
       },
       fontWeight: {
