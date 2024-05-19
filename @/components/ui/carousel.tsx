@@ -264,8 +264,8 @@ const CarouselDots = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
               className={cn(
                 'embla__dot h-1 w-1 p-1',
                 index === selectedIndex
-                  ? 'bg-primary'
-                  : 'border-secondary bg-secondary hover:bg-primary'
+                  ? 'bg-beige-dark'
+                  : 'border-secondary bg-secondary hover:bg-beige-dark'
               )}
               onClick={() => scrollTo(index)}
             />

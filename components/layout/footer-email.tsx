@@ -32,11 +32,11 @@ export const EmailSignup = () => {
       <div className="w-4/5">
         Subscribe to our newsletter to receive product updates and promotions
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 ">
         <Input
           type="email"
           name="email"
-          className="bg-transparent"
+          className="rounded-none bg-transparent"
           placeholder="Email address*"
           required
         />

@@ -90,7 +90,7 @@ export default async function ProductPage({ params }: { params: { handle: string
       />
       <div className="mx-auto mt-24 max-w-screen-2xl px-4">
         <div className="flex flex-col lg:flex-row lg:gap-8 lg:py-8">
-          <div className="h-full w-full basis-full ">
+          <div className="h-full w-full basis-2/5 ">
             <Suspense
               fallback={
                 <div className="relative aspect-[3/4] h-full max-h-[550px] w-full overflow-hidden" />
@@ -105,7 +105,7 @@ export default async function ProductPage({ params }: { params: { handle: string
             </Suspense>
           </div>
 
-          <div className="basis-full">
+          <div className="basis-3/5">
             <ProductDescription product={product} />
           </div>
         </div>
@@ -186,10 +186,10 @@ async function RelatedProducts({ id }: { id: string }) {
   if (!relatedProducts.length) return null;
 
   return (
-    <div className="border-t pb-20 pt-8 lg:pt-12">
+    <div className="border-t pb-12 pt-8 lg:pt-12">
       <h2 className="mb-4 text-2xl lg:text-4xl">Related Products</h2>
 
-      <ul className="no-scrollbar flex w-full gap-4 overflow-x-auto pt-1 lg:gap-12">
+      <ul className="no-scrollbar flex w-full gap-4 overflow-x-auto overflow-y-hidden pt-1 lg:gap-12">
         {relatedProducts.map((product) => (
           <li
             key={product.handle}

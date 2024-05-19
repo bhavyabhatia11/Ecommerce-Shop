@@ -74,15 +74,15 @@ function GiftWrapButton({}: {}) {
   const { pending } = useFormStatus();
 
   return (
-    <div className="flex gap-4 rounded-lg border bg-white px-5 py-5">
-      <div className="w-3/4 text-3xl text-[#95593F]">Wrap it for free!</div>
+    <div className="flex flex-col gap-4 rounded-lg border bg-white px-5 py-5 lg:flex-row">
+      <div className="w-3/4 text-xl text-[#95593F] lg:text-3xl">Wrap it for free!</div>
       <Button
         onClick={(e: React.FormEvent<HTMLButtonElement>) => {
           if (pending) e.preventDefault();
         }}
         aria-label="Lets wrap this!"
         aria-disabled={pending}
-        className={clsx(buttonClasses, 'w-[30%] p-3')}
+        className={clsx(buttonClasses, 'p-3 lg:w-[30%]')}
         variant="beige-lighter"
       >
         <div className="text-sm font-bold">

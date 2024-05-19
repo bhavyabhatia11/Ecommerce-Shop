@@ -12,6 +12,9 @@ export default async function Footer() {
   const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700';
   const menu = await getMenu('next-js-frontend-footer-menu');
   const testimonials = await getMetaObjects('testimonial');
+  const footerInfo = await getMetaObjects('footer');
+
+  if (!footerInfo) return;
 
   return (
     <footer className="bg-dark-green text-sm text-neutral-400 ">
@@ -32,14 +35,12 @@ export default async function Footer() {
           <Link className="flex items-center gap-2 text-black dark:text-white md:pt-1" href="/">
             <HeaderLogoIcon width={'204'} height={'32'} />
           </Link>
-          <div className="w-[300px]">
-            Mahaveer Bhawan, Chaura Rasta Rd, near Shop no. 152, 302003 Jaipur RJ, India
+          <div className="w-[300px]">{footerInfo[0]?.address}</div>
+          <div>
+            <a href={`mailto:${footerInfo[0]?.email}`}>{footerInfo[0]?.email}</a>
           </div>
           <div>
-            <a href="mailto:somethingsimple0404@gmail.com">somethingsimple0404@gmail.com</a>
-          </div>
-          <div>
-            <a href="tel:+919784630579">(+91)-9784630579</a>
+            <a href={`tel:${footerInfo[0]?.phone}`}>{footerInfo[0]?.phone}</a>
           </div>
         </div>
         <Suspense
