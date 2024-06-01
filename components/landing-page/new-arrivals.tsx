@@ -17,7 +17,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
 
   return (
     <div className="relative items-center justify-center bg-primary pb-12 lg:pb-24">
-      <div className="mx-auto mt-8 flex max-w-screen-2xl flex-col gap-8 px-4 lg:mt-24 lg:flex-row lg:gap-0">
+      <div className="mx-auto mt-8 flex max-w-screen-2xl flex-col gap-8 px-4 lg:mt-24 lg:flex-row lg:gap-0 lg:px-12">
         <div className="relative flex w-[35%] flex-col lg:right-0 ">
           <Ring
             className="absolute left-[30%] top-[2%] mx-auto -mb-20 hidden opacity-20 lg:block"

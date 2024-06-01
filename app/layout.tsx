@@ -4,7 +4,10 @@ import {
   Courier_Prime,
   IBM_Plex_Mono,
   Libre_Caslon_Display,
-  Playfair_Display
+  Montserrat,
+  Playfair_Display,
+  Poppins,
+  Raleway
 } from '@next/font/google';
 import Footer from 'components/layout/footer';
 import Navbar from 'components/layout/navbar';
@@ -69,11 +72,29 @@ const libre = Libre_Caslon_Display({
   subsets: ['latin']
 });
 
+const poppins = Poppins({
+  variable: '--font-poppins',
+  weight: '200',
+  subsets: ['latin']
+});
+
+const raleway = Raleway({
+  variable: '--font-raleway',
+  weight: '400',
+  subsets: ['latin']
+});
+
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
+  weight: ['400', '700'],
+  subsets: ['latin']
+});
+
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${courier_prime.variable} ${playfair.variable} ${bodoni.variable} ${libre.variable} ${ibm.variable} bg-primary font-sans`}
+        className={`${courier_prime.variable} ${playfair.variable} ${bodoni.variable} ${libre.variable} ${ibm.variable} ${poppins.variable} ${raleway.variable} ${montserrat.variable} bg-primary font-sans`}
       >
         <Navbar />
         <Suspense>

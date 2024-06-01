@@ -50,7 +50,7 @@ export const STONE_COLORS: StoneColors = {
 };
 
 export const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://www.somethingsimple.in`
+  ? `https://somethingsimple.vercel.app`
   : 'http://localhost:8080';
 
 export const HIDDEN_PRODUCT_TAG = 'nextjs-frontend-hidden';

@@ -159,7 +159,11 @@ function StoneFilterItem({ item }: { item: string }) {
           >
             <div
               className={`h-4 w-4`}
-              style={{ backgroundColor: `${STONE_COLORS[item] ? STONE_COLORS[item] : 'black'}` }}
+              style={{
+                backgroundImage: STONE_COLORS[item]
+                  ? STONE_COLORS[item]
+                  : 'linear-gradient(to top, red, yellow, blue, violet)'
+              }}
             ></div>
             <div>{item}</div>
           </label>

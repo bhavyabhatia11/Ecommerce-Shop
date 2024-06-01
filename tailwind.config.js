@@ -55,7 +55,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-playfair-display)', 'serif'],
-        serif: ['var(--font-courier_prime)', 'mono space']
+        serif: ['var(--font-montserrat)', 'sans']
       },
       fontWeight: {
         medium: 400,

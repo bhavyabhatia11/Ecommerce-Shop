@@ -17,7 +17,7 @@ export const Showcase = async ({ data }: { data: Section }) => {
 
   return (
     <div className="relative items-center justify-center bg-secondary pb-12 text-primary lg:pb-24">
-      <div className="mx-auto flex max-w-screen-2xl gap-12 px-4 lg:mt-24">
+      <div className="mx-auto flex max-w-screen-2xl gap-12 px-4 lg:mt-24 lg:px-12">
         <div className="mt-20 flex w-full flex-col">
           <div className="flex flex-col lg:flex-row">
             <Ring
