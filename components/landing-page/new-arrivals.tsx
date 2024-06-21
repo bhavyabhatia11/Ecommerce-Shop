@@ -17,7 +17,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
 
   return (
     <div className="relative items-center justify-center bg-primary pb-12 lg:pb-24">
-      <div className="mx-auto mt-8 flex max-w-screen-2xl flex-col gap-8 px-4 lg:mt-24 lg:flex-row lg:gap-0 lg:px-12">
+      <div className="mx-auto mt-8 flex max-w-screen-xl flex-col gap-8 px-4 lg:mt-24 lg:flex-row lg:gap-0 lg:px-12">
         <div className="relative flex w-[35%] flex-col lg:right-0 ">
           <Ring
             className="absolute left-[30%] top-[2%] mx-auto -mb-20 hidden opacity-20 lg:block"
@@ -47,7 +47,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
           </div>
         </div>
         <div className="flex w-full flex-col gap-8 lg:w-[65%] lg:gap-12 lg:gap-20 ">
-          <div className="z-1 bottom-0 flex w-[45%] text-xl text-secondary lg:w-1/2 lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
+          <div className="z-1 bottom-0 flex w-[45%] text-xl text-secondary lg:w-4/5 lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
             {data.title}
           </div>
           <div>

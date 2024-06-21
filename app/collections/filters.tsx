@@ -42,7 +42,7 @@ const SortByFilter = () => {
           </div>
           <ChevronDown className="mr-2 h-4 w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[501px] rounded-none bg-white p-0 !font-serif">
+        <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[416px] rounded-none bg-white p-0 !font-serif">
           {sorting.map((item, key) => {
             return (
               <DropdownMenuItem asChild key={key}>
@@ -82,7 +82,7 @@ const PriceFilter = () => {
         </div>
         <ChevronDown className="mr-2 h-4 w-4" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[501px] rounded-none bg-white p-0 font-serif">
+      <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[416px] rounded-none bg-white p-0 font-serif">
         {priceRange.map((item, key) => (
           <DropdownMenuItem asChild key={key}>
             <FilterItem item={item} key={key} />
@@ -111,7 +111,7 @@ const StonesFilter = ({ stones }: { stones: string[] }) => {
           </div>
           <ChevronDown className="mr-2 h-4 w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[501px] rounded-none bg-white p-0 font-serif">
+        <DropdownMenuContent className="w-[calc((100vw-32px)/3)] max-w-[416px] rounded-none bg-white p-0 font-serif">
           {stones.map((item, key) => {
             return (
               <DropdownMenuItem asChild key={key}>

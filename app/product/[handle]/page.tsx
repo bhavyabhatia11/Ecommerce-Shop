@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: { params: { handle: string
           __html: JSON.stringify(productJsonLd)
         }}
       />
-      <div className="mx-auto mt-24 max-w-screen-2xl px-4">
+      <div className="mx-auto mt-24 max-w-screen-xl px-4">
         <div className="flex flex-col lg:flex-row lg:gap-8 lg:py-8">
           <div className="h-full w-full basis-2/5 ">
             <Suspense
@@ -159,8 +159,8 @@ export default async function ProductPage({ params }: { params: { handle: string
           <JewelleryCare />
         </div>
 
-        <div className="flex justify-end py-8 lg:mb-12 lg:py-0">
-          <div className="flex flex-col gap-8 lg:w-1/2 lg:gap-16">
+        <div className="flex py-8 lg:mb-12 lg:py-0">
+          <div className="flex flex-col gap-8 lg:gap-16">
             <div className="text-lg lg:text-5xl"> {jewelleryPolicy.name}</div>
             <div>
               {' '}

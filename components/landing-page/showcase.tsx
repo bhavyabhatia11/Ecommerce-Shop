@@ -17,7 +17,7 @@ export const Showcase = async ({ data }: { data: Section }) => {
 
   return (
     <div className="relative items-center justify-center bg-secondary pb-12 text-primary lg:pb-24">
-      <div className="mx-auto flex max-w-screen-2xl gap-12 px-4 lg:mt-24 lg:px-12">
+      <div className="mx-auto flex max-w-screen-xl gap-12 px-4 lg:mt-24 lg:px-12">
         <div className="mt-20 flex w-full flex-col">
           <div className="flex flex-col lg:flex-row">
             <Ring
@@ -45,7 +45,7 @@ export const Showcase = async ({ data }: { data: Section }) => {
               <div className="z-1 bottom-0 mb-8 flex text-2xl lg:mb-20 lg:text-5xl">
                 {data.title}
               </div>
-              <div className="z-1 bottom-0 mb-8 flex w-full items-center gap-4 font-serif text-sm text-neutral-300 lg:mb-0 lg:ml-20 lg:text-base">
+              <div className="z-1 bottom-0 mb-8 flex items-center gap-4 font-serif text-sm text-neutral-300 lg:mb-0 lg:ml-20 lg:text-base">
                 {data.description}
               </div>
               <Link href={`/collections/${data.handle}`} className="hidden lg:ml-20 lg:block">

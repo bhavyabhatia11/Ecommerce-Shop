@@ -30,7 +30,7 @@ export default async function Footer() {
           <hr className="border-t" />
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-7xl max-w-screen-2xl flex-col gap-6 px-6 py-12 font-serif text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
+      <div className="mx-auto flex w-full max-w-7xl max-w-screen-xl flex-col gap-6 px-6 py-12 font-serif text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
         <div className="flex flex-col gap-6">
           <Link className="flex items-center gap-2 text-black dark:text-white md:pt-1" href="/">
             <HeaderLogoIcon width={'204'} height={'32'} />

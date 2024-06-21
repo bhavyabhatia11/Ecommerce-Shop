@@ -41,12 +41,24 @@ export const TAGS = {
 };
 
 type StoneColors = {
-  [key: string]: string;
+  [key: string]: string | null;
 };
 
 export const STONE_COLORS: StoneColors = {
-  Emarald: '#34FC34',
-  Ruby: '#FF9920'
+  Amethyst: '#6A2198',
+  Aquamarine: '#85B7BD',
+  'Blue topaz': '#4B98C0',
+  Carnelian: '#C73817',
+  Citrine: '#FFE311',
+  Diamond: null,
+  'Lapis Lazuli': '#15317E',
+  Malachite: '#3C7A6E',
+  Moonstone: null,
+  Onyx: null,
+  Pearl: null,
+  Peridot: '#819448',
+  Prasiolie: '#9AB7A1',
+  Tourmaline: null
 };
 
 export const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL

@@ -118,6 +118,7 @@ function PriceRangeFilterItem({ item }: { item: PriceRangeItem }) {
 }
 
 function StoneFilterItem({ item }: { item: string }) {
+  console.log('ITE<S', item);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -161,7 +162,7 @@ function StoneFilterItem({ item }: { item: string }) {
               className={`h-4 w-4`}
               style={{
                 backgroundImage: STONE_COLORS[item]
-                  ? STONE_COLORS[item]
+                  ? `linear-gradient(${STONE_COLORS[item]}, ${STONE_COLORS[item]})`
                   : 'linear-gradient(to top, red, yellow, blue, violet)'
               }}
             ></div>

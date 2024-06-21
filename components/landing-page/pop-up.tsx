@@ -39,7 +39,7 @@ export const PopUp = ({ data }: { data: Section }) => {
             width={'80%'}
             color="#c4c4c4"
           /> */}
-          <div className="my-12 flex max-w-screen-2xl gap-12 px-4 lg:mx-16 ">
+          <div className="my-12 flex max-w-screen-xl gap-12 px-4 lg:mx-16 ">
             <div className="absolute hidden w-[35%] flex-col lg:relative lg:right-0 lg:flex">
               <div className="relative h-[220px] w-[160px] overflow-hidden rounded-full lg:h-[546px] lg:w-[383px]">
                 <Image

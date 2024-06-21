@@ -21,7 +21,7 @@ export default async function AboutUs() {
 
   const { image, title, description } = aboutUs;
   return (
-    <div className="mx-auto my-24 max-w-screen-2xl px-4 lg:my-40 ">
+    <div className="mx-auto my-24 max-w-screen-xl px-4 lg:my-40 ">
       <Breadcrumb className="font-serif">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -38,7 +38,7 @@ export default async function AboutUs() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="py-2 pb-4 text-2xl lg:py-8 lg:text-6xl"> About us </div>
+      <div className="py-2 pb-4 text-2xl lg:py-8 lg:text-6xl"> </div>
       <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
         <div className="relative justify-center text-lg lg:w-2/5 lg:text-6xl">
           <Ring
@@ -62,9 +62,9 @@ export default async function AboutUs() {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-8 lg:w-3/5 lg:gap-16">
+        <div className="flex flex-col gap-6 lg:w-3/5 lg:gap-8">
           <div className="text-xl lg:text-6xl">{title}</div>
-          <div className="lg:ml-20">
+          <div>
             <Prose
               className="flex flex-col gap-4 font-serif text-sm tracking-wider text-neutral-500 lg:gap-8 lg:text-base"
               html={toHTML(description) as string}
