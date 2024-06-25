@@ -42,7 +42,7 @@ export const Showcase = async ({ data }: { data: Section }) => {
               <div className="z-1 bottom-0 mb-2 flex font-serif text-sm text-neutral-300 lg:mb-4 lg:text-base">
                 {data.subtitle}
               </div>
-              <div className="z-1 bottom-0 mb-8 flex text-2xl lg:mb-20 lg:text-5xl">
+              <div className="z-1 bottom-0 mb-8 flex text-2xl lg:mb-20 lg:text-[40px] lg:leading-tight">
                 {data.title}
               </div>
               <div className="z-1 bottom-0 mb-8 flex items-center gap-4 font-serif text-sm text-neutral-300 lg:mb-0 lg:ml-20 lg:text-base">

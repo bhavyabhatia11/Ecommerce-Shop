@@ -18,7 +18,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
   return (
     <div className="relative items-center justify-center bg-primary pb-12 lg:pb-24">
       <div className="mx-auto mt-8 flex max-w-screen-xl flex-col gap-8 px-4 lg:mt-24 lg:flex-row lg:gap-0 lg:px-12">
-        <div className="relative flex w-[35%] flex-col lg:right-0 ">
+        <div className="relative flex w-[40%] flex-col lg:right-0 ">
           <Ring
             className="absolute left-[30%] top-[2%] mx-auto -mb-20 hidden opacity-20 lg:block"
             color="#c4c4c4"
@@ -37,7 +37,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
               src={data.images[0]?.image.url as string}
             />
           </div>
-          <div className="absolute left-[180px] top-[200px] h-[220px] w-[174px] overflow-hidden rounded-full lg:left-[200px] lg:top-[460px] lg:h-[446px] lg:w-[360px] ">
+          <div className="absolute left-[180px] top-[200px] h-[220px] w-[174px] overflow-hidden rounded-full lg:left-[200px] lg:top-[460px] lg:h-[357px] lg:w-[288px] ">
             <Image
               className="object-cover"
               fill
@@ -47,7 +47,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
           </div>
         </div>
         <div className="flex w-full flex-col gap-8 lg:w-[65%] lg:gap-12 lg:gap-20 ">
-          <div className="z-1 bottom-0 flex w-[45%] text-xl text-secondary lg:w-4/5 lg:items-center lg:justify-center lg:gap-4 lg:text-5xl">
+          <div className="z-1 bottom-0 flex w-[200px] text-xl text-secondary lg:w-4/5 lg:items-center lg:justify-center lg:gap-4 lg:text-[40px] lg:leading-tight">
             {data.title}
           </div>
           <div>
@@ -55,7 +55,7 @@ export const NewArrivals = async ({ data }: { data: Section }) => {
               href={`/collections/${data.handle}`}
               className="mb-8 flex hidden justify-end lg:flex"
             >
-              <Button variant="secondary" className="mt-8 gap-2 font-serif lg:mt-12">
+              <Button variant="secondary" className="mt-8 gap-2 font-serif lg:mt-0">
                 See all
                 <MoveRightIcon />
               </Button>

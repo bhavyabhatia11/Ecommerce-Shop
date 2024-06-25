@@ -18,7 +18,7 @@ export const BestSellers = async ({ data }: { data: Section }) => {
       <div className="mx-auto flex max-w-screen-xl flex-col gap-4 px-4 py-12 pb-16 text-primary lg:gap-12 lg:px-12 lg:pb-0 lg:pt-16">
         <div className="flex w-full items-end justify-between">
           <div className="lg:mb-12">
-            <h2 className="text-2xl lg:mb-4 lg:text-5xl">{data.title}</h2>
+            <h2 className="text-2xl lg:mb-4 lg:text-[40px] lg:leading-tight">{data.title}</h2>
             <h2 className="mb-4 font-serif text-sm lg:text-base">{data.subtitle}</h2>
           </div>
           <Link href={`/collections/${data.handle}`} className="hidden lg:block">

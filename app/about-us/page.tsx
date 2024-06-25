@@ -39,8 +39,8 @@ export default async function AboutUs() {
       </Breadcrumb>
 
       <div className="py-2 pb-4 text-2xl lg:py-8 lg:text-6xl"> </div>
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
-        <div className="relative justify-center text-lg lg:w-2/5 lg:text-6xl">
+      <div className="flex flex-col gap-10">
+        <div className="relative justify-center text-lg lg:text-6xl">
           <Ring
             className="absolute bottom-0 left-[30%] mx-auto -mb-20 hidden opacity-20 lg:block"
             height={'100%'}
@@ -53,7 +53,7 @@ export default async function AboutUs() {
             width={'80%'}
             color="#c4c4c4"
           />
-          <div className="relative mx-auto aspect-[10/9] max-w-[452px] overflow-hidden  rounded-lg lg:aspect-[3/5]">
+          <div className="relative mx-auto aspect-[10/9] max-w-[452px] overflow-hidden rounded-lg lg:aspect-[2/1] lg:max-w-full">
             <Image
               className="object-cover"
               fill
@@ -62,11 +62,11 @@ export default async function AboutUs() {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-6 lg:w-3/5 lg:gap-8">
+        <div className="flex flex-col gap-6 lg:gap-8">
           <div className="text-xl lg:text-6xl">{title}</div>
           <div>
             <Prose
-              className="flex flex-col gap-4 font-serif text-sm tracking-wider text-neutral-500 lg:gap-8 lg:text-base"
+              className="flex flex-col gap-4 font-serif text-sm tracking-wider text-neutral-500 lg:mx-0 lg:gap-8 lg:text-base"
               html={toHTML(description) as string}
             />
           </div>

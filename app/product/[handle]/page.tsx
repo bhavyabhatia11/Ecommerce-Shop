@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         </div>
 
         {product?.info?.value && (
-          <div className="item-center my-6 text-lg leading-[3.2rem] lg:my-12 lg:text-[36px]">
+          <div className="item-center my-6 text-lg leading-[3.2rem] lg:my-12 lg:text-[32px]">
             {product.info.value}
           </div>
         )}
@@ -155,7 +155,7 @@ export default async function ProductPage({ params }: { params: { handle: string
           </div>
         )}
 
-        <div className="relative left-1/2 flex w-[100vw] w-screen -translate-x-1/2 transform justify-center bg-beige-lighter px-6 lg:mb-16 lg:mt-8 lg:pb-12 lg:pt-4">
+        <div className="relative left-1/2 flex w-[100vw] w-screen -translate-x-1/2 transform justify-center bg-beige-lighter px-6 lg:mb-16 lg:mt-8 lg:pb-6 lg:pt-6">
           <JewelleryCare />
         </div>
 
